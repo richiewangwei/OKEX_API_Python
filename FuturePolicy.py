@@ -48,6 +48,7 @@ class FuturePolicy:
         self.stop_profit_percent = stop_profit_percent
         self.stop_loss_percent   = 3.0 * self.stop_profit_percent
         self.open_positions_max_num = 10000
+        self.open_pos_diff_max_num = 10000
 
 
 
@@ -93,7 +94,8 @@ class FuturePolicy:
         need_close_pos_num = -1
         for i in range(len(self.open_buy_positions)):
             # 判断是否平仓
-            if not self.is_need_close_buy(self.open_buy_positions[i], last_deal_price):
+            if  (not (self.is_need_close_buy(self.open_buy_positions[i], last_deal_price)) ) and    \
+                (not (i == 0 and len(self.open_buy_positions) > len(self.open_sell_positions) + self.open_pos_diff_max_num) ):
                 continue
             # 平仓
             sell_amount = self.open_buy_positions[i].buy_amount
@@ -180,7 +182,8 @@ class FuturePolicy:
         need_close_pos_num = -1
         for i in range(len(self.open_sell_positions)):
             # 判断是否平仓
-            if not self.is_need_close_sell(self.open_sell_positions[i], last_deal_price):
+            if  (not (self.is_need_close_sell(self.open_sell_positions[i], last_deal_price)) ) and  \
+                (not (i == 0 and len(self.open_sell_positions) > len(self.open_buy_positions) + self.open_pos_diff_max_num) ):
                 continue
             # 平仓
             buy_amount = self.open_sell_positions[i].sell_amount
