@@ -3,6 +3,7 @@
 #期货合约策略类
 
 from datetime import datetime, date, time
+import random
 from HttpMD5Util import buildMySign,httpGet,httpPost,printJson
 from OkcoinSpotAPI import OKCoinSpot
 from OkcoinFutureAPI import OKCoinFuture
@@ -116,7 +117,11 @@ class FuturePolicy:
         buy_amount = 1
         buy_price = last_deal_price
         self.trade_open_buy(buy_amount, buy_price, open_date)
-        self.last_open_buy_date = open_date
+        if self.last_open_buy_date > 0:
+            self.last_open_buy_date = open_date
+        else:
+            rand_int = random.randrange(self.open_date_diff)
+            self.last_open_buy_date = open_date + rand_int
         return 1
 
     # 执行一次完整的 先平仓后开仓 的过程
@@ -199,7 +204,11 @@ class FuturePolicy:
         sell_amount = 1
         sell_price = last_deal_price
         self.trade_open_sell(sell_amount, sell_price, open_date)
-        self.last_open_sell_date = open_date
+        if self.last_open_sell_date > 0:
+            self.last_open_sell_date = open_date
+        else:
+            rand_int = random.randrange(self.open_date_diff)
+            self.last_open_sell_date = open_date + rand_int
         return 1
 
     # 执行一次完整的 先平仓后开仓 的过程
@@ -226,6 +235,8 @@ class FuturePolicy:
         fail_num = 0
         open_buy_profit_percent_sum = 0.0
         open_sell_profit_percent_sum = 0.0
+        open_success_num = 0
+        open_fail_num = 0
         # 输出：当前持仓，多头
         for i in range(len(self.open_buy_positions)):
             s += 'buy__price\t%.2f' % self.open_buy_positions[i].buy_price
@@ -361,34 +372,44 @@ class FuturePolicy:
         for i in range(len(self.open_buy_positions)):
             per = round((last_deal_price / self.open_buy_positions[i].buy_price - 1.0) * 100.0, 2)
             open_buy_profit_percent_sum += per
+            if per > 0:
+                open_success_num += 1
+            else:
+                open_fail_num += 1
         for i in range(len(self.open_sell_positions)):
             per = round((1.0 - last_deal_price / self.open_sell_positions[i].sell_price) * 100.0, 2)
             open_sell_profit_percent_sum += per
+            if per > 0:
+                open_success_num += 1
+            else:
+                open_fail_num += 1
         # 输出：所有仓位的手续费预估（包括已平仓和未平仓）
         fees = -1.5 * round((len(self.open_buy_positions) + len(self.open_sell_positions)) * 0.1 + (len(self.close_buy_positions) + len(self.close_sell_positions)) * 0.1, 2)
         # 输出：所有仓位全部平仓以后的收益率总和预估
         all_positions_profit_percent_sum = buy_positions_profit_percent_sum + sell_positions_profit_percent_sum + open_buy_profit_percent_sum + open_sell_profit_percent_sum + fees
         s += 'prof_sum= '
-        s += '%.2f' % all_positions_profit_percent_sum
-        s += '%\tclose_buy_sum= '
-        s += '%.2f' % buy_positions_profit_percent_sum
-        s += '%  close_sell_sum= '
-        s += '%.2f' % sell_positions_profit_percent_sum
-        s += '%  open_buy_sum= '
-        s += '%.2f' % open_buy_profit_percent_sum
-        s += '%  open_sell_sum= '
-        s += '%.2f' % open_sell_profit_percent_sum
+        s += '%+.2f' % all_positions_profit_percent_sum
+        s += '%\tclose_buy_sell= '
+        s += '%+.2f' % buy_positions_profit_percent_sum
+        s += '% : '
+        s += '%+.2f' % sell_positions_profit_percent_sum
+        s += '%  open_buy_sell= '
+        s += '%+.2f' % open_buy_profit_percent_sum
+        s += '% : '
+        s += '%+.2f' % open_sell_profit_percent_sum
         s += '%  fees= '
         s += '%.2f' % fees
         s += '%'
-        s += '  success_num= %d' % success_num
-        s += '  fail_num= %d' % fail_num
-        s += '  symbol='
+        s += '  close_succ_fail= %d : ' % success_num
+        s += '%d' % fail_num
+        s += '  open_succ_fail= %d : ' % open_success_num
+        s += '%d' % open_fail_num
+        s += '  symb='
         s += self.symbol
-        s += ' contract='
+        s += ' contr='
         s += self.contract_type
-        s += ' open_date_diff=%d' % (self.open_date_diff / 60)
-        s += ' stop_profit_percent=%.2f' % self.stop_profit_percent
+        s += ' open_diff=%d' % (self.open_date_diff / 60)
+        s += ' profit_per=%.2f' % self.stop_profit_percent
         s += '\n\n'
         print(s)
 

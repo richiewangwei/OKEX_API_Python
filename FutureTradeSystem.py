@@ -61,7 +61,7 @@ class FutureTradeSystem:
         #self.ticker_infos.append(ticker)
 
         self.policy_infos = []
-        #    5   10   15   20
+        #   05   10   20   30
         # 0.75 1.00 1.25 1.50
         policy = {'open_date_diff':  5 * 60, 'stop_profit_percent':0.75}
         self.policy_infos.append(policy)
@@ -79,14 +79,6 @@ class FutureTradeSystem:
         self.policy_infos.append(policy)
         policy = {'open_date_diff': 10 * 60, 'stop_profit_percent':1.50}
         self.policy_infos.append(policy)
-        policy = {'open_date_diff': 15 * 60, 'stop_profit_percent':0.75}
-        self.policy_infos.append(policy)
-        policy = {'open_date_diff': 15 * 60, 'stop_profit_percent':1.00}
-        self.policy_infos.append(policy)
-        policy = {'open_date_diff': 15 * 60, 'stop_profit_percent':1.25}
-        self.policy_infos.append(policy)
-        policy = {'open_date_diff': 15 * 60, 'stop_profit_percent':1.50}
-        self.policy_infos.append(policy)
         policy = {'open_date_diff': 20 * 60, 'stop_profit_percent':0.75}
         self.policy_infos.append(policy)
         policy = {'open_date_diff': 20 * 60, 'stop_profit_percent':1.00}
@@ -94,6 +86,14 @@ class FutureTradeSystem:
         policy = {'open_date_diff': 20 * 60, 'stop_profit_percent':1.25}
         self.policy_infos.append(policy)
         policy = {'open_date_diff': 20 * 60, 'stop_profit_percent':1.50}
+        self.policy_infos.append(policy)
+        policy = {'open_date_diff': 30 * 60, 'stop_profit_percent':0.75}
+        self.policy_infos.append(policy)
+        policy = {'open_date_diff': 30 * 60, 'stop_profit_percent':1.00}
+        self.policy_infos.append(policy)
+        policy = {'open_date_diff': 30 * 60, 'stop_profit_percent':1.25}
+        self.policy_infos.append(policy)
+        policy = {'open_date_diff': 30 * 60, 'stop_profit_percent':1.50}
         self.policy_infos.append(policy)
         pass
 
