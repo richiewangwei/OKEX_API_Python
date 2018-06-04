@@ -109,6 +109,7 @@ class FutureTradeSystem:
                 future_policy = FuturePolicy(symbol, contract_type, policy['open_date_diff'], policy['stop_profit_percent'])
                 future_policy_grp.append(future_policy)
             future_policy_list.append(future_policy_grp)
+        count_print = 0
         while True:
             for i in range(len(self.ticker_infos)):
                 symbol = self.ticker_infos[i]['symbol']
@@ -120,10 +121,13 @@ class FutureTradeSystem:
                 for future_policy in future_policy_list[i]:
                     future_policy.do_open_close_buy_positions(ticker.last, int(ticker.date))
                     future_policy.do_open_close_sell_positions(ticker.last, int(ticker.date))
-                    print(ticker.get_str())
-                    future_policy.print_all_positions(ticker.last)
-                print('\n\n\n')
-                time.sleep(10)
+                    if count_print % (10 * 60 / 6) == 0:
+                        print(ticker.get_str())
+                        future_policy.print_all_positions(ticker.last)
+                if count_print % (10 * 60 / 6) == 0:
+                    print('\n\n\n')
+                time.sleep(1)
+            count_print += 1
         pass
 
 
