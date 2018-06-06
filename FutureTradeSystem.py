@@ -63,14 +63,23 @@ class FutureTradeSystem:
         self.policy_infos = []
         #   05   10   20   30
         # 0.75 1.00 1.25 1.50
-        policy = {'open_date_diff':  5 * 60, 'stop_profit_percent':0.75}
+        policy = {'open_date_diff':  5 * 60, 'stop_profit_percent':0.75, 'stop_loss_percent':0.75 * 3.0}
         self.policy_infos.append(policy)
-        policy = {'open_date_diff':  5 * 60, 'stop_profit_percent':1.00}
+        policy = {'open_date_diff':  5 * 60, 'stop_profit_percent':1.00, 'stop_loss_percent':1.00 * 3.0}
         self.policy_infos.append(policy)
-        policy = {'open_date_diff':  5 * 60, 'stop_profit_percent':1.25}
+        policy = {'open_date_diff':  5 * 60, 'stop_profit_percent':1.25, 'stop_loss_percent':1.25 * 3.0}
         self.policy_infos.append(policy)
-        policy = {'open_date_diff':  5 * 60, 'stop_profit_percent':1.50}
+        policy = {'open_date_diff':  5 * 60, 'stop_profit_percent':1.50, 'stop_loss_percent':1.50 * 3.0}
         self.policy_infos.append(policy)
+        policy = {'open_date_diff':  5 * 60, 'stop_profit_percent':0.75 * 3.0, 'stop_loss_percent':0.75}
+        self.policy_infos.append(policy)
+        policy = {'open_date_diff':  5 * 60, 'stop_profit_percent':1.00 * 3.0, 'stop_loss_percent':1.00}
+        self.policy_infos.append(policy)
+        policy = {'open_date_diff':  5 * 60, 'stop_profit_percent':1.25 * 3.0, 'stop_loss_percent':1.25}
+        self.policy_infos.append(policy)
+        policy = {'open_date_diff':  5 * 60, 'stop_profit_percent':1.50 * 3.0, 'stop_loss_percent':1.50}
+        self.policy_infos.append(policy)
+        '''
         policy = {'open_date_diff': 10 * 60, 'stop_profit_percent':0.75}
         self.policy_infos.append(policy)
         policy = {'open_date_diff': 10 * 60, 'stop_profit_percent':1.00}
@@ -95,6 +104,7 @@ class FutureTradeSystem:
         self.policy_infos.append(policy)
         policy = {'open_date_diff': 30 * 60, 'stop_profit_percent':1.50}
         self.policy_infos.append(policy)
+        '''
         pass
 
 
@@ -106,7 +116,7 @@ class FutureTradeSystem:
             contract_type = self.ticker_infos[i]['contract_type']
             future_policy_grp = []
             for policy in self.policy_infos:
-                future_policy = FuturePolicy(symbol, contract_type, policy['open_date_diff'], policy['stop_profit_percent'])
+                future_policy = FuturePolicy(symbol, contract_type, policy['open_date_diff'], policy['stop_profit_percent'], policy['stop_loss_percent'])
                 future_policy_grp.append(future_policy)
             future_policy_list.append(future_policy_grp)
         count_print = 0

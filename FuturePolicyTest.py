@@ -13,7 +13,7 @@ from FuturePolicy import BuyPosition, FuturePolicy
 class TestFuturePolicy(unittest.TestCase):
 
     def test_trade_open_buy(self):
-        future_policy = FuturePolicy('ltc_usd', 'this_week', 15 * 60, 1.50)
+        future_policy = FuturePolicy('ltc_usd', 'this_week', 15 * 60, 1.50, 3.00)
         # 第1次开多仓
         buy_amount = 1
         buy_price = 100.0
@@ -44,7 +44,7 @@ class TestFuturePolicy(unittest.TestCase):
         pass
     
     def test_is_need_close_buy(self):
-        future_policy = FuturePolicy('ltc_usd', 'this_week', 15 * 60, 1.50)
+        future_policy = FuturePolicy('ltc_usd', 'this_week', 15 * 60, 1.50, 3.00)
         buy_amount = 1
         buy_price = 100.0
         open_date = 10000
@@ -64,7 +64,7 @@ class TestFuturePolicy(unittest.TestCase):
         pass
 
     def test_trade_close_buy(self):
-        future_policy = FuturePolicy('ltc_usd', 'this_week', 15 * 60, 1.50)
+        future_policy = FuturePolicy('ltc_usd', 'this_week', 15 * 60, 1.50, 3.00)
         self.assertEqual(len(future_policy.open_buy_positions), 0)
         self.assertEqual(len(future_policy.close_buy_positions), 0)
         # 开多仓1次，平多仓1次        
@@ -111,7 +111,7 @@ class TestFuturePolicy(unittest.TestCase):
     def test_del_pos_from_open_buy(self):
         # 开仓1次，然后删除
         if True:
-            future_policy = FuturePolicy('ltc_usd', 'this_week', 15 * 60, 1.50)
+            future_policy = FuturePolicy('ltc_usd', 'this_week', 15 * 60, 1.50, 3.00)
             buy_amount = 1
             buy_price = 100.0
             open_date = 10000
@@ -120,7 +120,7 @@ class TestFuturePolicy(unittest.TestCase):
             self.assertEqual(len(future_policy.open_buy_positions), 0)         
         # 开仓3次，删除第1个
         if True:
-            future_policy = FuturePolicy('ltc_usd', 'this_week', 15 * 60, 1.50)
+            future_policy = FuturePolicy('ltc_usd', 'this_week', 15 * 60, 1.50, 3.00)
             buy_amount = 1
             buy_price = 101.0
             open_date = 10001
@@ -148,7 +148,7 @@ class TestFuturePolicy(unittest.TestCase):
             self.assertEqual(future_policy.open_buy_positions[1].open_date, 10003)
         # 开仓3次，删除第2个
         if True:
-            future_policy = FuturePolicy('ltc_usd', 'this_week', 15 * 60, 1.50)
+            future_policy = FuturePolicy('ltc_usd', 'this_week', 15 * 60, 1.50, 3.00)
             buy_amount = 1
             buy_price = 101.0
             open_date = 10001
@@ -176,7 +176,7 @@ class TestFuturePolicy(unittest.TestCase):
             self.assertEqual(future_policy.open_buy_positions[1].open_date, 10003)
         # 开仓3次，删除第3个
         if True:
-            future_policy = FuturePolicy('ltc_usd', 'this_week', 15 * 60, 1.50)
+            future_policy = FuturePolicy('ltc_usd', 'this_week', 15 * 60, 1.50, 3.00)
             buy_amount = 1
             buy_price = 101.0
             open_date = 10001
@@ -207,7 +207,7 @@ class TestFuturePolicy(unittest.TestCase):
     def test_scan_all_open_buy_positions(self):
         # 开仓1次，先不平仓，然后平仓
         if True:
-            future_policy = FuturePolicy('ltc_usd', 'this_week', 15 * 60, 1.50)
+            future_policy = FuturePolicy('ltc_usd', 'this_week', 15 * 60, 1.50, 3.00)
             buy_amount = 1
             buy_price = 100.1
             open_date = 10001
@@ -241,7 +241,7 @@ class TestFuturePolicy(unittest.TestCase):
             
         # 开仓3次，不平仓，全都保留
         if True:
-            future_policy = FuturePolicy('ltc_usd', 'this_week', 15 * 60, 1.50)
+            future_policy = FuturePolicy('ltc_usd', 'this_week', 15 * 60, 1.50, 3.00)
             buy_amount = 1
             buy_price = 100.1
             open_date = 10001
@@ -278,7 +278,7 @@ class TestFuturePolicy(unittest.TestCase):
 
         # 开仓3次，然后只平掉第1次的仓位，保留第2次和第3次（共3种情况，只测1种）
         if True:
-            future_policy = FuturePolicy('ltc_usd', 'this_week', 15 * 60, 1.50)
+            future_policy = FuturePolicy('ltc_usd', 'this_week', 15 * 60, 1.50, 3.00)
             buy_amount = 1
             buy_price = 100.1
             open_date = 10001
@@ -319,7 +319,7 @@ class TestFuturePolicy(unittest.TestCase):
 
         # 开仓3次，然后平掉后2次的仓位，只保留第1次的仓位（共3种情况，只测1种）
         if True:
-            future_policy = FuturePolicy('ltc_usd', 'this_week', 15 * 60, 1.50)
+            future_policy = FuturePolicy('ltc_usd', 'this_week', 15 * 60, 1.50, 3.00)
             buy_amount = 1
             buy_price = 100.1
             open_date = 10001
@@ -370,7 +370,7 @@ class TestFuturePolicy(unittest.TestCase):
 
         # 开仓3次，全都平仓，不保留
         if True:
-            future_policy = FuturePolicy('ltc_usd', 'this_week', 15 * 60, 1.50)
+            future_policy = FuturePolicy('ltc_usd', 'this_week', 15 * 60, 1.50, 3.00)
             buy_amount = 1
             buy_price = 100.1
             open_date = 10001
@@ -430,7 +430,7 @@ class TestFuturePolicy(unittest.TestCase):
         pass
 
     def test_build_open_buy_positions(self):
-        future_policy = FuturePolicy('ltc_usd', 'this_week', 15 * 60, 1.50)
+        future_policy = FuturePolicy('ltc_usd', 'this_week', 15 * 60, 1.50, 3.00)
         # 第1次开多仓
         last_deal_price = 100.0
         open_date = 1526877182
@@ -469,7 +469,7 @@ class TestFuturePolicy(unittest.TestCase):
         pass
 
     def test_do_open_close_buy_positions(self):
-        future_policy = FuturePolicy('ltc_usd', 'this_week', 15 * 60, 1.50)
+        future_policy = FuturePolicy('ltc_usd', 'this_week', 15 * 60, 1.50, 3.00)
         # 第1次报价：开多仓
         last_deal_price = 100.0
         ticker_date = 1526811118
@@ -542,7 +542,7 @@ class TestFuturePolicy(unittest.TestCase):
 
 
     def test_trade_open_sell(self):
-        future_policy = FuturePolicy('ltc_usd', 'this_week', 15 * 60, 1.50)
+        future_policy = FuturePolicy('ltc_usd', 'this_week', 15 * 60, 1.50, 3.00)
         # 第1次开多仓
         sell_amount = 1
         sell_price = 100.0
@@ -573,7 +573,7 @@ class TestFuturePolicy(unittest.TestCase):
         pass
     
     def test_is_need_close_sell(self):
-        future_policy = FuturePolicy('ltc_usd', 'this_week', 15 * 60, 1.50)
+        future_policy = FuturePolicy('ltc_usd', 'this_week', 15 * 60, 1.50, 3.00)
         sell_amount = 1
         sell_price = 100.0
         open_date = 10000
@@ -593,7 +593,7 @@ class TestFuturePolicy(unittest.TestCase):
         pass
 
     def test_trade_close_sell(self):
-        future_policy = FuturePolicy('ltc_usd', 'this_week', 15 * 60, 1.50)
+        future_policy = FuturePolicy('ltc_usd', 'this_week', 15 * 60, 1.50, 3.00)
         self.assertEqual(len(future_policy.open_sell_positions), 0)
         self.assertEqual(len(future_policy.close_sell_positions), 0)
         # 开多仓1次，平多仓1次        
@@ -640,7 +640,7 @@ class TestFuturePolicy(unittest.TestCase):
     def test_del_pos_from_open_sell(self):
         # 开仓1次，然后删除
         if True:
-            future_policy = FuturePolicy('ltc_usd', 'this_week', 15 * 60, 1.50)
+            future_policy = FuturePolicy('ltc_usd', 'this_week', 15 * 60, 1.50, 3.00)
             sell_amount = 1
             sell_price = 100.0
             open_date = 10000
@@ -649,7 +649,7 @@ class TestFuturePolicy(unittest.TestCase):
             self.assertEqual(len(future_policy.open_sell_positions), 0)         
         # 开仓3次，删除第1个
         if True:
-            future_policy = FuturePolicy('ltc_usd', 'this_week', 15 * 60, 1.50)
+            future_policy = FuturePolicy('ltc_usd', 'this_week', 15 * 60, 1.50, 3.00)
             sell_amount = 1
             sell_price = 101.0
             open_date = 10001
@@ -677,7 +677,7 @@ class TestFuturePolicy(unittest.TestCase):
             self.assertEqual(future_policy.open_sell_positions[1].open_date, 10003)
         # 开仓3次，删除第2个
         if True:
-            future_policy = FuturePolicy('ltc_usd', 'this_week', 15 * 60, 1.50)
+            future_policy = FuturePolicy('ltc_usd', 'this_week', 15 * 60, 1.50, 3.00)
             sell_amount = 1
             sell_price = 101.0
             open_date = 10001
@@ -705,7 +705,7 @@ class TestFuturePolicy(unittest.TestCase):
             self.assertEqual(future_policy.open_sell_positions[1].open_date, 10003)
         # 开仓3次，删除第3个
         if True:
-            future_policy = FuturePolicy('ltc_usd', 'this_week', 15 * 60, 1.50)
+            future_policy = FuturePolicy('ltc_usd', 'this_week', 15 * 60, 1.50, 3.00)
             sell_amount = 1
             sell_price = 101.0
             open_date = 10001
@@ -736,7 +736,7 @@ class TestFuturePolicy(unittest.TestCase):
     def test_scan_all_open_sell_positions(self):
         # 开仓1次，先不平仓，然后平仓
         if True:
-            future_policy = FuturePolicy('ltc_usd', 'this_week', 15 * 60, 1.50)
+            future_policy = FuturePolicy('ltc_usd', 'this_week', 15 * 60, 1.50, 3.00)
             sell_amount = 1
             sell_price = 100.1
             open_date = 10001
@@ -770,7 +770,7 @@ class TestFuturePolicy(unittest.TestCase):
             
         # 开仓3次，不平仓，全都保留
         if True:
-            future_policy = FuturePolicy('ltc_usd', 'this_week', 15 * 60, 1.50)
+            future_policy = FuturePolicy('ltc_usd', 'this_week', 15 * 60, 1.50, 3.00)
             sell_amount = 1
             sell_price = 100.1
             open_date = 10001
@@ -807,7 +807,7 @@ class TestFuturePolicy(unittest.TestCase):
 
         # 开仓3次，然后只平掉第1次的仓位，保留第2次和第3次（共3种情况，只测1种）
         if True:
-            future_policy = FuturePolicy('ltc_usd', 'this_week', 15 * 60, 1.50)
+            future_policy = FuturePolicy('ltc_usd', 'this_week', 15 * 60, 1.50, 3.00)
             sell_amount = 1
             sell_price = 100.1
             open_date = 10001
@@ -848,7 +848,7 @@ class TestFuturePolicy(unittest.TestCase):
 
         # 开仓3次，然后平掉后2次的仓位，只保留第1次的仓位（共3种情况，只测1种）
         if True:
-            future_policy = FuturePolicy('ltc_usd', 'this_week', 15 * 60, 1.50)
+            future_policy = FuturePolicy('ltc_usd', 'this_week', 15 * 60, 1.50, 3.00)
             sell_amount = 1
             sell_price = 100.1
             open_date = 10001
@@ -899,7 +899,7 @@ class TestFuturePolicy(unittest.TestCase):
 
         # 开仓3次，全都平仓，不保留
         if True:
-            future_policy = FuturePolicy('ltc_usd', 'this_week', 15 * 60, 1.50)
+            future_policy = FuturePolicy('ltc_usd', 'this_week', 15 * 60, 1.50, 3.00)
             sell_amount = 1
             sell_price = 100.1
             open_date = 10001
@@ -959,7 +959,7 @@ class TestFuturePolicy(unittest.TestCase):
         pass
 
     def test_build_open_sell_positions(self):
-        future_policy = FuturePolicy('ltc_usd', 'this_week', 15 * 60, 1.50)
+        future_policy = FuturePolicy('ltc_usd', 'this_week', 15 * 60, 1.50, 3.00)
         # 第1次开多仓
         last_deal_price = 100.0
         open_date = 1526877182
@@ -998,7 +998,7 @@ class TestFuturePolicy(unittest.TestCase):
         pass
 
     def test_do_open_close_sell_positions(self):
-        future_policy = FuturePolicy('ltc_usd', 'this_week', 15 * 60, 1.50)
+        future_policy = FuturePolicy('ltc_usd', 'this_week', 15 * 60, 1.50, 3.00)
         # 第1次报价：开多仓
         last_deal_price = 100.0
         ticker_date = 1526811118

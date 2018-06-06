@@ -35,7 +35,7 @@ class SellPosition:
         
 class FuturePolicy:
 
-    def __init__(self, symbol, contract_type, open_date_diff, stop_profit_percent):
+    def __init__(self, symbol, contract_type, open_date_diff, stop_profit_percent, stop_loss_percent):
         self.symbol = symbol
         self.contract_type = contract_type
         self.open_buy_positions = []
@@ -46,7 +46,7 @@ class FuturePolicy:
         self.last_open_sell_date = 0
         self.open_date_diff = open_date_diff
         self.stop_profit_percent = stop_profit_percent
-        self.stop_loss_percent   = 3.0 * self.stop_profit_percent
+        self.stop_loss_percent   = stop_loss_percent
         self.open_positions_max_num = 10000
         self.open_pos_diff_max_num = 10000
 
@@ -407,12 +407,13 @@ class FuturePolicy:
         s += '%d' % fail_num
         s += '  open_succ_fail= %d : ' % open_success_num
         s += '%d' % open_fail_num
-        s += '  symb='
+        s += '  sym='
         s += self.symbol
-        s += ' contr='
+        s += ' con='
         s += self.contract_type
         s += ' open_diff=%d' % (self.open_date_diff / 60)
-        s += ' profit_per=%.2f' % self.stop_profit_percent
+        s += ' prof=%.2f' % self.stop_profit_percent
+        s += ' loss=%.2f' % self.stop_loss_percent
         s += '\n\n'
         print(s)
 
