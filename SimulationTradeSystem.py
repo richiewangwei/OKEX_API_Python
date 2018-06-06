@@ -142,6 +142,7 @@ class BuyPosition:
         self.sell_price = 0.0
         self.close_date = 0
         self.profit_percent = 0.0
+        self.is_need_mini_profit = False
 
 class SellPosition:
     def __init__(self, symbol, contract_type):
@@ -154,11 +155,12 @@ class SellPosition:
         self.buy_price = 0.0
         self.close_date = 0
         self.profit_percent = 0.0
+        self.is_need_mini_profit = False
 
         
 class FuturePolicy:
 
-    def __init__(self, symbol, contract_type, open_date_diff, stop_profit_percent, stop_loss_percent):
+    def __init__(self, symbol, contract_type, open_date_diff, stop_profit_percent, stop_loss_percent, mini_profit_percent, mini_loss_percent):
         self.symbol = symbol
         self.contract_type = contract_type
         self.open_buy_positions = []
@@ -170,6 +172,8 @@ class FuturePolicy:
         self.open_date_diff = open_date_diff
         self.stop_profit_percent = stop_profit_percent
         self.stop_loss_percent   = stop_loss_percent
+        self.mini_profit_percent = mini_profit_percent
+        self.mini_loss_percent   = mini_loss_percent
         self.open_positions_max_num = 10000
         self.open_pos_diff_max_num = 10000
 
@@ -193,6 +197,15 @@ class FuturePolicy:
         # 止盈
         if last_deal_price > open_buy_position.buy_price * (1 + self.stop_profit_percent / 100):
             return True
+
+        # 第一次碰到小止损
+        if last_deal_price < open_buy_position.buy_price * (1 - self.mini_loss_percent / 100):
+            open_buy_position.is_need_mini_profit = True
+            return False
+        # 碰到过小止损，执行小止盈
+        if last_deal_price > open_buy_position.buy_price * (1 + self.mini_profit_percent / 100) and open_buy_position.is_need_mini_profit:
+            return True
+        
         return False
 
     # 下单-平多仓
@@ -281,6 +294,15 @@ class FuturePolicy:
         # 止盈
         if last_deal_price < open_sell_position.sell_price * (1 - self.stop_profit_percent / 100):
             return True
+
+        # 第一次碰到小止损
+        if last_deal_price > open_sell_position.sell_price * (1 + self.mini_loss_percent / 100):
+            open_sell_position.is_need_mini_profit = True
+            return False
+        # 碰到过小止损，执行小止盈
+        if last_deal_price < open_sell_position.sell_price * (1 - self.mini_profit_percent / 100) and open_sell_position.is_need_mini_profit:
+            return True
+            
         return False
 
     # 下单-平空仓
@@ -604,23 +626,13 @@ class FutureTradeSystem:
         #self.ticker_infos.append(ticker)
 
         self.policy_infos = []
-        #   05   10   20   30
-        # 0.75 1.00 1.25 1.50
-        policy = {'open_date_diff':  5 * 60, 'stop_profit_percent':0.75, 'stop_loss_percent':0.75 * 3.0}
+        policy = {'open_date_diff':  5 * 60, 'stop_profit_percent':0.75 * 3.0, 'stop_loss_percent':0.75 * 2.0, 'mini_profit_percent':0.75 * 1.0, 'mini_loss_percent':0.75 * 1.0}
         self.policy_infos.append(policy)
-        policy = {'open_date_diff':  5 * 60, 'stop_profit_percent':1.00, 'stop_loss_percent':1.00 * 3.0}
+        policy = {'open_date_diff':  5 * 60, 'stop_profit_percent':1.00 * 3.0, 'stop_loss_percent':1.00 * 2.0, 'mini_profit_percent':1.00 * 1.0, 'mini_loss_percent':1.00 * 1.0}
         self.policy_infos.append(policy)
-        policy = {'open_date_diff':  5 * 60, 'stop_profit_percent':1.25, 'stop_loss_percent':1.25 * 3.0}
+        policy = {'open_date_diff':  5 * 60, 'stop_profit_percent':1.25 * 3.0, 'stop_loss_percent':1.25 * 2.0, 'mini_profit_percent':1.25 * 1.0, 'mini_loss_percent':1.25 * 1.0}
         self.policy_infos.append(policy)
-        policy = {'open_date_diff':  5 * 60, 'stop_profit_percent':1.50, 'stop_loss_percent':1.50 * 3.0}
-        self.policy_infos.append(policy)
-        policy = {'open_date_diff':  5 * 60, 'stop_profit_percent':0.75 * 3.0, 'stop_loss_percent':0.75}
-        self.policy_infos.append(policy)
-        policy = {'open_date_diff':  5 * 60, 'stop_profit_percent':1.00 * 3.0, 'stop_loss_percent':1.00}
-        self.policy_infos.append(policy)
-        policy = {'open_date_diff':  5 * 60, 'stop_profit_percent':1.25 * 3.0, 'stop_loss_percent':1.25}
-        self.policy_infos.append(policy)
-        policy = {'open_date_diff':  5 * 60, 'stop_profit_percent':1.50 * 3.0, 'stop_loss_percent':1.50}
+        policy = {'open_date_diff':  5 * 60, 'stop_profit_percent':1.50 * 3.0, 'stop_loss_percent':1.50 * 2.0, 'mini_profit_percent':1.50 * 1.0, 'mini_loss_percent':1.50 * 1.0}
         self.policy_infos.append(policy)
         '''
         policy = {'open_date_diff': 10 * 60, 'stop_profit_percent':0.75}
@@ -659,7 +671,7 @@ class FutureTradeSystem:
             contract_type = self.ticker_infos[i]['contract_type']
             future_policy_grp = []
             for policy in self.policy_infos:
-                future_policy = FuturePolicy(symbol, contract_type, policy['open_date_diff'], policy['stop_profit_percent'], policy['stop_loss_percent'])
+                future_policy = FuturePolicy(symbol, contract_type, policy['open_date_diff'], policy['stop_profit_percent'], policy['stop_loss_percent'], policy['mini_profit_percent'], policy['mini_loss_percent'])
                 future_policy_grp.append(future_policy)
             future_policy_list.append(future_policy_grp)
         count_print = 0
