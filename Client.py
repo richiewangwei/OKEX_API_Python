@@ -69,6 +69,22 @@ okcoinFuture = OKCoinFuture(okcoinRESTURL,apikey,secretkey)
 #print (u'(6) 获取预估交割价') 
 #printJson (okcoinFuture.future_estimated_price('btc_usd'))
 
+#print (u'(7) 获取OKEx合约K线信息')
+#printJson (okcoinFuture.future_kline('bch_usd','quarter','1hour'))
+
+#obj = okcoinFuture.future_kline('bch_usd','quarter','1day')
+#print(len(obj)) #232
+#obj = okcoinFuture.future_kline('bch_usd','quarter','12hour')
+#print(len(obj)) #400
+#obj = okcoinFuture.future_kline('bch_usd','quarter','2hour')
+#print(len(obj)) #1680
+#obj = okcoinFuture.future_kline('bch_usd','quarter','1hour')
+#print(len(obj)) #1680
+#obj = okcoinFuture.future_kline('bch_usd','quarter','30min')
+#print(len(obj)) #1680
+#obj = okcoinFuture.future_kline('bch_usd','quarter','15min')
+#print(len(obj)) #1680
+
 
 
 # 交易 API
