@@ -76,20 +76,20 @@ class KLineList:
         s = ''
         s += 'KLine\tCount=%d' % len(self.klinelist)
         s += '\tLastKLine='
-        for klinesinge in self.klinelist:
+        for klinesingle in self.klinelist:
             s += '\n'
             s += 'date='
-            if int(klinesinge.date) > 10 ** 9:
-                dt = datetime.fromtimestamp(int(klinesinge.date))
+            if int(klinesingle.date) > 10 ** 9:
+                dt = datetime.fromtimestamp(int(klinesingle.date))
                 s += dt.isoformat(' ')
             else:
                 s += '0'
-            s += '  open=%.3f' % klinesinge.open
-            s += '  high=%.3f' % klinesinge.high
-            s += '  low=%.3f' % klinesinge.low
-            s += '  close=%.3f' % klinesinge.close
-            s += '  vol=%d' % klinesinge.vol
-            s += '\tconv_vol=%d' % klinesinge.convertBTC
+            s += '  open=%.3f' % klinesingle.open
+            s += '  high=%.3f' % klinesingle.high
+            s += '  low=%.3f' % klinesingle.low
+            s += '  close=%.3f' % klinesingle.close
+            s += '  vol=%d' % klinesingle.vol
+            s += '\tconv_vol=%d' % klinesingle.convertBTC
         return s
 
     
