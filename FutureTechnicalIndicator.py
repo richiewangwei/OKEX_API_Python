@@ -10,10 +10,10 @@ from OkcoinFutureAPI import OKCoinFuture
 
 
 class MA_Simple:
-    def __init__(self, short_day_num, long_day_num, original_value_list):
+    def __init__(self, original_value_list, short_day_num, long_day_num):
+        self.original_value_list = original_value_list
         self.short_day_num = short_day_num
         self.long_day_num = long_day_num
-        self.original_value_list = original_value_list
         self.ma_short_list = []
         self.ma_long_list = []
 
@@ -51,6 +51,37 @@ class MA_Simple:
             
         pass
 
+
+
+class OBV_Simple:
+    def __init__(self, vol_list, close_list, ma_day_num, since = ''):
+        self.vol_list = vol_list
+        self.close_list = close_list
+        self.ma_day_num = ma_day_num
+        self.since = since
+        self.obv_list = []
+        self.ma_obv_list = []
+
+        self.obv_list.append(self.vol_list[0])
+        self.ma_obv_list.append(self.vol_list[0])
+        
+        for i in range(1, len(self.vol_list)):
+            obv = 0.0
+            ma_obv = 0.0
+            if self.close_list[i] > self.close_list[i-1]:
+                obv = self.obv_list[i-1] + self.vol_list[i]
+            else:
+                obv = self.obv_list[i-1] - self.vol_list[i]
+            self.obv_list.append(obv)
+                
+            if i < self.ma_day_num:
+                ma_obv = sum(self.obv_list[0 : i + 1]) / (i + 1)
+            else:
+                ma_obv = sum(self.obv_list[i + 1 - self.ma_day_num : i + 1]) / self.ma_day_num
+            self.ma_obv_list.append(ma_obv)
+
+        pass
+    
               
         
         
