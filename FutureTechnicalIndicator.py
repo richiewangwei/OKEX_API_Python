@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 #期货合约策略类
 
-from datetime import datetime, date, time
 import random
 from HttpMD5Util import buildMySign,httpGet,httpPost,printJson
 from OkcoinSpotAPI import OKCoinSpot
