@@ -11,66 +11,66 @@ from FutureTechnicalIndicator import *
 class FutureTradeSystem:
     def __init__(self):
         self.ticker_infos = []
-        ma_day_num_group_count = 20
+        self.ma_day_num_group_count = 100
         # btc
-        for i in range(ma_day_num_group_count):
-            ticker = { 'symbol':'btc_usd', 'contract_type':'quarter', 'type':'1hour', 'ma_day_num':(i + 1) * 5 }
+        for i in range(self.ma_day_num_group_count):
+            ticker = { 'symbol':'btc_usd', 'contract_type':'quarter', 'type':'1hour', 'ma_day_num':(i + 1) * 1 }
             self.ticker_infos.append(ticker)
-        for i in range(ma_day_num_group_count):
-            ticker = { 'symbol':'btc_usd', 'contract_type':'quarter', 'type':'30min', 'ma_day_num':(i + 1) * 10 }
+        for i in range(self.ma_day_num_group_count):
+            ticker = { 'symbol':'btc_usd', 'contract_type':'quarter', 'type':'30min', 'ma_day_num':(i + 1) * 2 }
             self.ticker_infos.append(ticker)
-        for i in range(ma_day_num_group_count):
-            ticker = { 'symbol':'btc_usd', 'contract_type':'quarter', 'type':'15min', 'ma_day_num':(i + 1) * 20 }
+        for i in range(self.ma_day_num_group_count):
+            ticker = { 'symbol':'btc_usd', 'contract_type':'quarter', 'type':'15min', 'ma_day_num':(i + 1) * 4 }
             self.ticker_infos.append(ticker)
         # ltc
-        for i in range(ma_day_num_group_count):
-            ticker = { 'symbol':'ltc_usd', 'contract_type':'quarter', 'type':'1hour', 'ma_day_num':(i + 1) * 5 }
+        for i in range(self.ma_day_num_group_count):
+            ticker = { 'symbol':'ltc_usd', 'contract_type':'quarter', 'type':'1hour', 'ma_day_num':(i + 1) * 1 }
             self.ticker_infos.append(ticker)
-        for i in range(ma_day_num_group_count):
-            ticker = { 'symbol':'ltc_usd', 'contract_type':'quarter', 'type':'30min', 'ma_day_num':(i + 1) * 10 }
+        for i in range(self.ma_day_num_group_count):
+            ticker = { 'symbol':'ltc_usd', 'contract_type':'quarter', 'type':'30min', 'ma_day_num':(i + 1) * 2 }
             self.ticker_infos.append(ticker)
-        for i in range(ma_day_num_group_count):
-            ticker = { 'symbol':'ltc_usd', 'contract_type':'quarter', 'type':'15min', 'ma_day_num':(i + 1) * 20 }
-            self.ticker_infos.append(ticker)
-        # eth
-        for i in range(ma_day_num_group_count):
-            ticker = { 'symbol':'eth_usd', 'contract_type':'quarter', 'type':'1hour', 'ma_day_num':(i + 1) * 5 }
-            self.ticker_infos.append(ticker)
-        for i in range(ma_day_num_group_count):
-            ticker = { 'symbol':'eth_usd', 'contract_type':'quarter', 'type':'30min', 'ma_day_num':(i + 1) * 10 }
-            self.ticker_infos.append(ticker)
-        for i in range(ma_day_num_group_count):
-            ticker = { 'symbol':'eth_usd', 'contract_type':'quarter', 'type':'15min', 'ma_day_num':(i + 1) * 20 }
-            self.ticker_infos.append(ticker)
-        # etc
-        for i in range(ma_day_num_group_count):
-            ticker = { 'symbol':'etc_usd', 'contract_type':'quarter', 'type':'1hour', 'ma_day_num':(i + 1) * 5 }
-            self.ticker_infos.append(ticker)
-        for i in range(ma_day_num_group_count):
-            ticker = { 'symbol':'etc_usd', 'contract_type':'quarter', 'type':'30min', 'ma_day_num':(i + 1) * 10 }
-            self.ticker_infos.append(ticker)
-        for i in range(ma_day_num_group_count):
-            ticker = { 'symbol':'etc_usd', 'contract_type':'quarter', 'type':'15min', 'ma_day_num':(i + 1) * 20 }
+        for i in range(self.ma_day_num_group_count):
+            ticker = { 'symbol':'ltc_usd', 'contract_type':'quarter', 'type':'15min', 'ma_day_num':(i + 1) * 4 }
             self.ticker_infos.append(ticker)
         # bch
-        for i in range(ma_day_num_group_count):
-            ticker = { 'symbol':'bch_usd', 'contract_type':'quarter', 'type':'1hour', 'ma_day_num':(i + 1) * 5 }
+        for i in range(self.ma_day_num_group_count):
+            ticker = { 'symbol':'bch_usd', 'contract_type':'quarter', 'type':'1hour', 'ma_day_num':(i + 1) * 1 }
             self.ticker_infos.append(ticker)
-        for i in range(ma_day_num_group_count):
-            ticker = { 'symbol':'bch_usd', 'contract_type':'quarter', 'type':'30min', 'ma_day_num':(i + 1) * 10 }
+        for i in range(self.ma_day_num_group_count):
+            ticker = { 'symbol':'bch_usd', 'contract_type':'quarter', 'type':'30min', 'ma_day_num':(i + 1) * 2 }
             self.ticker_infos.append(ticker)
-        for i in range(ma_day_num_group_count):
-            ticker = { 'symbol':'bch_usd', 'contract_type':'quarter', 'type':'15min', 'ma_day_num':(i + 1) * 20 }
+        for i in range(self.ma_day_num_group_count):
+            ticker = { 'symbol':'bch_usd', 'contract_type':'quarter', 'type':'15min', 'ma_day_num':(i + 1) * 4 }
+            self.ticker_infos.append(ticker)
+        # eth
+        for i in range(self.ma_day_num_group_count):
+            ticker = { 'symbol':'eth_usd', 'contract_type':'quarter', 'type':'1hour', 'ma_day_num':(i + 1) * 1 }
+            self.ticker_infos.append(ticker)
+        for i in range(self.ma_day_num_group_count):
+            ticker = { 'symbol':'eth_usd', 'contract_type':'quarter', 'type':'30min', 'ma_day_num':(i + 1) * 2 }
+            self.ticker_infos.append(ticker)
+        for i in range(self.ma_day_num_group_count):
+            ticker = { 'symbol':'eth_usd', 'contract_type':'quarter', 'type':'15min', 'ma_day_num':(i + 1) * 4 }
+            self.ticker_infos.append(ticker)
+        # etc
+        for i in range(self.ma_day_num_group_count):
+            ticker = { 'symbol':'etc_usd', 'contract_type':'quarter', 'type':'1hour', 'ma_day_num':(i + 1) * 1 }
+            self.ticker_infos.append(ticker)
+        for i in range(self.ma_day_num_group_count):
+            ticker = { 'symbol':'etc_usd', 'contract_type':'quarter', 'type':'30min', 'ma_day_num':(i + 1) * 2 }
+            self.ticker_infos.append(ticker)
+        for i in range(self.ma_day_num_group_count):
+            ticker = { 'symbol':'etc_usd', 'contract_type':'quarter', 'type':'15min', 'ma_day_num':(i + 1) * 4 }
             self.ticker_infos.append(ticker)
         # eos
-        for i in range(ma_day_num_group_count):
-            ticker = { 'symbol':'eos_usd', 'contract_type':'quarter', 'type':'1hour', 'ma_day_num':(i + 1) * 5 }
+        for i in range(self.ma_day_num_group_count):
+            ticker = { 'symbol':'eos_usd', 'contract_type':'quarter', 'type':'1hour', 'ma_day_num':(i + 1) * 1 }
             self.ticker_infos.append(ticker)
-        for i in range(ma_day_num_group_count):
-            ticker = { 'symbol':'eos_usd', 'contract_type':'quarter', 'type':'30min', 'ma_day_num':(i + 1) * 10 }
+        for i in range(self.ma_day_num_group_count):
+            ticker = { 'symbol':'eos_usd', 'contract_type':'quarter', 'type':'30min', 'ma_day_num':(i + 1) * 2 }
             self.ticker_infos.append(ticker)
-        for i in range(ma_day_num_group_count):
-            ticker = { 'symbol':'eos_usd', 'contract_type':'quarter', 'type':'15min', 'ma_day_num':(i + 1) * 20 }
+        for i in range(self.ma_day_num_group_count):
+            ticker = { 'symbol':'eos_usd', 'contract_type':'quarter', 'type':'15min', 'ma_day_num':(i + 1) * 4 }
             self.ticker_infos.append(ticker)
 
         pass
@@ -80,12 +80,14 @@ class FutureTradeSystem:
         future_api_client = FutureAPIClient(Future_REST_URL, Future_Api_Key, Future_Secret_Key)
         while True:
             for i in range(len(self.ticker_infos)):
+                if (i % self.ma_day_num_group_count) == 0:
+                    print ('\n')
                 symbol = self.ticker_infos[i]['symbol']
                 contract_type = self.ticker_infos[i]['contract_type']
                 type = self.ticker_infos[i]['type']
                 klinelist = future_api_client.get_kline(symbol, contract_type, type)
                 if len(klinelist.klinelist) < 10:
-                    print('\n\nFuture API Client ERROR!\n\n')
+                    print(str(self.ticker_infos[i]) + '\tFuture_API_Client_ERROR!')
                     continue
                 tech_indicat = FutureTechnicalIndicator(klinelist)
                 ma_day_num = self.ticker_infos[i]['ma_day_num']
@@ -99,7 +101,8 @@ class FutureTradeSystem:
                 profit_sum = 0.0
                 for j in range(len(tech_indicat.close_list)):
                     s = ''
-                    s += '%.2f' % obv_simple.close_list[j]
+                    s += '[%d]' % j
+                    s += '\t\t%.2f' % obv_simple.close_list[j]
                     s += '\t\t%d' % (obv_simple.vol_list[j] / 10000)
                     s += '\t\t%d' % (obv_simple.obv_list[j] / 10000)
                     s += '\t\t%d' % (obv_simple.ma_obv_list[j] / 10000)
@@ -107,25 +110,31 @@ class FutureTradeSystem:
                         s += '\t\t     +++++'
                         if j - 2 >= 0 and obv_simple.ma_obv_list[j-1] < obv_simple.ma_obv_list[j-2]:
                             s += '\t\tBuy'
-                            buy_count += 1
-                            buy_price_sum += obv_simple.close_list[j]
                             last_buy_price = obv_simple.close_list[j]
                             if last_sell_price > 0:
+                                sell_count += 1
+                                sell_price_sum += last_sell_price
+                                buy_count += 1
+                                buy_price_sum += obv_simple.close_list[j]
                                 s += '\t\t%+.2f' % (last_sell_price - last_buy_price)
+                                s += ' =%.2f-%.2f' % (last_sell_price, last_buy_price)
                                 profit_sum += last_sell_price - last_buy_price
-                                s += '\t\t%+.2f' % profit_sum
+                                s += '\t\tsum= %+.2f' % profit_sum
                                 #print(s)
                     else:
                         s += '\t\t-----     '
                         if j - 2 >= 0 and obv_simple.ma_obv_list[j-1] > obv_simple.ma_obv_list[j-2]:
                             s += '\t\tSell'
-                            sell_count += 1
-                            sell_price_sum += obv_simple.close_list[j]
                             last_sell_price = obv_simple.close_list[j]
                             if last_buy_price > 0:
+                                buy_count += 1
+                                buy_price_sum += last_buy_price
+                                sell_count += 1
+                                sell_price_sum += obv_simple.close_list[j]
                                 s += '\t\t%+.2f' % (last_sell_price - last_buy_price)
+                                s += ' =%.2f-%.2f' % (last_sell_price, last_buy_price)
                                 profit_sum += last_sell_price - last_buy_price
-                                s += '\t\t%+.2f' % profit_sum
+                                s += '\t\tsum= %+.2f' % profit_sum
                                 #print(s)
                         
                     #print(s)
@@ -139,7 +148,7 @@ class FutureTradeSystem:
                                 
                 print(s)
 
-                time.sleep(10)
+                time.sleep(0.5)
             break
         
         pass
