@@ -82,6 +82,25 @@ class OBV_Simple:
         pass
     
               
+
+class Open_Close_Diff:
+    def __init__(self, open_list, close_list):
+        self.open_list = open_list
+        self.close_list = close_list
+        self.open_close_same_count = 0
+        self.open_close_diff_count = 0
+         
+        for i in range(1, len(self.close_list)):
+            if (self.close_list[i] > self.close_list[i-1] and self.close_list[i] > self.open_list[i]) or \
+               (self.close_list[i] < self.close_list[i-1] and self.close_list[i] < self.open_list[i]):
+                self.open_close_same_count += 1
+            else:
+                self.open_close_diff_count += 1
+
+        pass
+    
+              
+        
         
         
 class FutureTechnicalIndicator:

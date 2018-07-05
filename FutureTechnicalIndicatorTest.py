@@ -255,6 +255,74 @@ class TestFutureTechnicalIndicator(unittest.TestCase):
 
 
 
+    def test_Open_Close_Diff(self):
+        klinelist = KLineList()
+        for i in range(10):
+            klinesingle = KLineSingle()
+            klinelist.klinelist.append(klinesingle)
+
+        # 收盘价一直上涨的情况
+        if True:
+            for i in range(10):
+                klinelist.klinelist[i].open = (i + 0) + 100
+                klinelist.klinelist[i].close = (i + 1) + 100
+            tech_indicat = FutureTechnicalIndicator(klinelist)
+            for i in range(10):
+                self.assertEqual(tech_indicat.open_list[i], (i + 0) + 100)
+                self.assertEqual(tech_indicat.close_list[i], (i + 1) + 100)
+
+            open_close_diff = Open_Close_Diff(tech_indicat.open_list, tech_indicat.close_list)
+            self.assertEqual(open_close_diff.open_close_same_count, 9)
+            self.assertEqual(open_close_diff.open_close_diff_count, 0)
+
+        # 收盘价一直下跌的情况
+        if True:
+            for i in range(10):
+                klinelist.klinelist[i].open = 100 - (i + 0)
+                klinelist.klinelist[i].close = 100 - (i + 1)
+            tech_indicat = FutureTechnicalIndicator(klinelist)
+            for i in range(10):
+                self.assertEqual(tech_indicat.open_list[i], 100 - (i + 0))
+                self.assertEqual(tech_indicat.close_list[i], 100 - (i + 1))
+
+            open_close_diff = Open_Close_Diff(tech_indicat.open_list, tech_indicat.close_list)
+            self.assertEqual(open_close_diff.open_close_same_count, 9)
+            self.assertEqual(open_close_diff.open_close_diff_count, 0)
+
+        # 收盘价有涨有跌的情况
+        if True:            
+            klinelist.klinelist[0].open  = 110.0
+            klinelist.klinelist[0].close = 100.0
+            klinelist.klinelist[1].open  = 110.0
+            klinelist.klinelist[1].close =  50.0
+            klinelist.klinelist[2].open  =  60.0
+            klinelist.klinelist[2].close = 100.0
+            klinelist.klinelist[3].open  =  90.0
+            klinelist.klinelist[3].close =  60.0
+            klinelist.klinelist[4].open  =  80.0
+            klinelist.klinelist[4].close =  70.0    # diff
+            klinelist.klinelist[5].open  =  75.0
+            klinelist.klinelist[5].close =  80.0
+            klinelist.klinelist[6].open  =  90.0
+            klinelist.klinelist[6].close = 100.0
+            klinelist.klinelist[7].open  =  95.0
+            klinelist.klinelist[7].close =  90.0
+            klinelist.klinelist[8].open  =  60.0
+            klinelist.klinelist[8].close =  80.0    # diff
+            klinelist.klinelist[9].open  =  75.0
+            klinelist.klinelist[9].close =  70.0
+            tech_indicat = FutureTechnicalIndicator(klinelist)
+            open_close_diff = Open_Close_Diff(tech_indicat.open_list, tech_indicat.close_list)
+            self.assertEqual(open_close_diff.open_close_same_count, 7)
+            self.assertEqual(open_close_diff.open_close_diff_count, 2)
+
+
+        pass
+
+                
+
+
+
 if __name__ == '__main__':
     unittest.main()
 
