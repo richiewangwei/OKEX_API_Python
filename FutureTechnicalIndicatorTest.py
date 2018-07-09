@@ -274,6 +274,10 @@ class TestFutureTechnicalIndicator(unittest.TestCase):
             open_close_diff = Open_Close_Diff(tech_indicat.open_list, tech_indicat.close_list)
             self.assertEqual(open_close_diff.open_close_same_count, 9)
             self.assertEqual(open_close_diff.open_close_diff_count, 0)
+            self.assertEqual(open_close_diff.open_close_all_same_count, 0)
+            self.assertEqual(open_close_diff.open_close_all_diff_count, 9)
+            self.assertEqual(open_close_diff.profit_all_same, 0.0)
+            self.assertEqual(open_close_diff.profit_all_diff, 9.0)
 
         # 收盘价一直下跌的情况
         if True:
@@ -288,6 +292,10 @@ class TestFutureTechnicalIndicator(unittest.TestCase):
             open_close_diff = Open_Close_Diff(tech_indicat.open_list, tech_indicat.close_list)
             self.assertEqual(open_close_diff.open_close_same_count, 9)
             self.assertEqual(open_close_diff.open_close_diff_count, 0)
+            self.assertEqual(open_close_diff.open_close_all_same_count, 0)
+            self.assertEqual(open_close_diff.open_close_all_diff_count, 9)
+            self.assertEqual(open_close_diff.profit_all_same, 0.0)
+            self.assertEqual(open_close_diff.profit_all_diff, 9.0)
 
         # 收盘价有涨有跌的情况
         if True:            
@@ -315,6 +323,10 @@ class TestFutureTechnicalIndicator(unittest.TestCase):
             open_close_diff = Open_Close_Diff(tech_indicat.open_list, tech_indicat.close_list)
             self.assertEqual(open_close_diff.open_close_same_count, 7)
             self.assertEqual(open_close_diff.open_close_diff_count, 2)
+            self.assertEqual(open_close_diff.open_close_all_same_count, 6)  # 2 3 5 6 7 9
+            self.assertEqual(open_close_diff.open_close_all_diff_count, 3)  # 1 4 8 
+            self.assertEqual(open_close_diff.profit_all_same, 95.0)
+            self.assertEqual(open_close_diff.profit_all_diff, 90.0)
 
 
         pass
