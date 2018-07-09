@@ -189,7 +189,7 @@ class FutureTradeSystem:
         while True:
             for i in range(len(self.check_open_close_diff_infos)):
                 if i % len(type_list) == 0:
-                    print('\n\n\n')
+                    print('\n\n\n\n\n')
                 symbol = self.check_open_close_diff_infos[i]['symbol']
                 contract_type = self.check_open_close_diff_infos[i]['contract_type']
                 type = self.check_open_close_diff_infos[i]['type']
@@ -202,10 +202,21 @@ class FutureTradeSystem:
                 
                 s = ''
                 s += str(self.check_open_close_diff_infos[i])
-                s += '\topen_close_same_count= %d' % open_close_diff.open_close_same_count
-                s += '\topen_close_diff_count= %d' % open_close_diff.open_close_diff_count
-                s += '\t\t\tsame_diff_sum= %d' % (open_close_diff.open_close_same_count + open_close_diff.open_close_diff_count)
-                s += '\tclose_price_count= %d' % len(tech_indicat.close_list)
+                s += '\nclose_price_count= %d' % len(tech_indicat.close_list)
+                s += '\top_cl_same_count= %d' % open_close_diff.open_close_same_count
+                s += '\top_cl_diff_count= %d' % open_close_diff.open_close_diff_count
+                s += '\tsame_diff_sum= %d' % (open_close_diff.open_close_same_count + open_close_diff.open_close_diff_count)
+                s += '\nop_cl_all_same= %d' % open_close_diff.open_close_all_same_count
+                s += '\top_cl_all_diff= %d' % open_close_diff.open_close_all_diff_count
+                s += '\tprof_all_same= %.2f' % open_close_diff.profit_all_same
+                s += '\tprofit_all_diff  = %.2f' % open_close_diff.profit_all_diff
+                s += '\tprof_diff/same= %.2f' % (open_close_diff.profit_all_diff / open_close_diff.profit_all_same * 100)
+                s += '%'
+                s += '\tprof_diff-same= %.2f' % (open_close_diff.profit_all_diff - open_close_diff.profit_all_same)
+                s += '\tclose_avg= %.2f' % (sum(tech_indicat.close_list) / len(tech_indicat.close_list))
+                s += '\tprofit_percent= %.2f' % ((open_close_diff.profit_all_diff - open_close_diff.profit_all_same) / (sum(tech_indicat.close_list) / len(tech_indicat.close_list)) * 100)
+                s += '%'
+                s += '\n'
                 print(s)
 
                 time.sleep(1)
