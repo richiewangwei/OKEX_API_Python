@@ -143,8 +143,9 @@ class FutureTradeSystem:
                 s += '\tProfit_Sum=\t%+6.2f' % profit_sum
                 s += '\tProfit_Per=\t%+.2f' % (profit_sum / (buy_price_sum / buy_count) * 100)
                 s += '%'
-                s += '\tBUY_Trade = %3d * %6.2f' % (buy_count, buy_price_sum / buy_count)
-                s += '\tSELL_Trade = %3d * %6.2f' % (sell_count, sell_price_sum / sell_count)
+                s += '\tDiff_Trade=\t%+6.2f' % (sell_price_sum - buy_price_sum)
+                s += '\tBUY_Trade=\t%3d\t* %6.2f' % (buy_count, buy_price_sum / buy_count)
+                s += '\tSELL_Trade=\t%3d\t* %6.2f' % (sell_count, sell_price_sum / sell_count)
                                 
                 print(s)
 

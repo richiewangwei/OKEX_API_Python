@@ -11,144 +11,242 @@ from FutureTechnicalIndicator import *
 class FutureTradeSystem:
     def __init__(self):
         self.ticker_infos = []
+        self.ticker_infos_list = []
         self.ma_day_num_group_count = 100
         # btc
+        self.ticker_infos = []
         for i in range(self.ma_day_num_group_count):
-            ticker = { 'symbol':'btc_usd', 'contract_type':'quarter', 'type':'1hour', 'ma_day_num':(i + 1) * 1 }
+            ticker = { 'symbol':'btc_usd', 'contract':'quarter', 'type':'1hour', 'ma_day_num':(i + 1) * 1 }
             self.ticker_infos.append(ticker)
+        self.ticker_infos_list.append(self.ticker_infos)
+        self.ticker_infos = []
         for i in range(self.ma_day_num_group_count):
-            ticker = { 'symbol':'btc_usd', 'contract_type':'quarter', 'type':'30min', 'ma_day_num':(i + 1) * 2 }
+            ticker = { 'symbol':'btc_usd', 'contract':'quarter', 'type':'30min', 'ma_day_num':(i + 1) * 2 }
             self.ticker_infos.append(ticker)
+        self.ticker_infos_list.append(self.ticker_infos)
+        self.ticker_infos = []
         for i in range(self.ma_day_num_group_count):
-            ticker = { 'symbol':'btc_usd', 'contract_type':'quarter', 'type':'15min', 'ma_day_num':(i + 1) * 4 }
+            ticker = { 'symbol':'btc_usd', 'contract':'quarter', 'type':'15min', 'ma_day_num':(i + 1) * 4 }
             self.ticker_infos.append(ticker)
+        self.ticker_infos_list.append(self.ticker_infos)
         # ltc
+        self.ticker_infos = []
         for i in range(self.ma_day_num_group_count):
-            ticker = { 'symbol':'ltc_usd', 'contract_type':'quarter', 'type':'1hour', 'ma_day_num':(i + 1) * 1 }
+            ticker = { 'symbol':'ltc_usd', 'contract':'quarter', 'type':'1hour', 'ma_day_num':(i + 1) * 1 }
             self.ticker_infos.append(ticker)
+        self.ticker_infos_list.append(self.ticker_infos)
+        self.ticker_infos = []
         for i in range(self.ma_day_num_group_count):
-            ticker = { 'symbol':'ltc_usd', 'contract_type':'quarter', 'type':'30min', 'ma_day_num':(i + 1) * 2 }
+            ticker = { 'symbol':'ltc_usd', 'contract':'quarter', 'type':'30min', 'ma_day_num':(i + 1) * 2 }
             self.ticker_infos.append(ticker)
+        self.ticker_infos_list.append(self.ticker_infos)
+        self.ticker_infos = []
         for i in range(self.ma_day_num_group_count):
-            ticker = { 'symbol':'ltc_usd', 'contract_type':'quarter', 'type':'15min', 'ma_day_num':(i + 1) * 4 }
+            ticker = { 'symbol':'ltc_usd', 'contract':'quarter', 'type':'15min', 'ma_day_num':(i + 1) * 4 }
             self.ticker_infos.append(ticker)
+        self.ticker_infos_list.append(self.ticker_infos)
         # bch
+        self.ticker_infos = []
         for i in range(self.ma_day_num_group_count):
-            ticker = { 'symbol':'bch_usd', 'contract_type':'quarter', 'type':'1hour', 'ma_day_num':(i + 1) * 1 }
+            ticker = { 'symbol':'bch_usd', 'contract':'quarter', 'type':'1hour', 'ma_day_num':(i + 1) * 1 }
             self.ticker_infos.append(ticker)
+        self.ticker_infos_list.append(self.ticker_infos)
+        self.ticker_infos = []
         for i in range(self.ma_day_num_group_count):
-            ticker = { 'symbol':'bch_usd', 'contract_type':'quarter', 'type':'30min', 'ma_day_num':(i + 1) * 2 }
+            ticker = { 'symbol':'bch_usd', 'contract':'quarter', 'type':'30min', 'ma_day_num':(i + 1) * 2 }
             self.ticker_infos.append(ticker)
+        self.ticker_infos_list.append(self.ticker_infos)
+        self.ticker_infos = []
         for i in range(self.ma_day_num_group_count):
-            ticker = { 'symbol':'bch_usd', 'contract_type':'quarter', 'type':'15min', 'ma_day_num':(i + 1) * 4 }
+            ticker = { 'symbol':'bch_usd', 'contract':'quarter', 'type':'15min', 'ma_day_num':(i + 1) * 4 }
             self.ticker_infos.append(ticker)
+        self.ticker_infos_list.append(self.ticker_infos)
         # eth
+        self.ticker_infos = []
         for i in range(self.ma_day_num_group_count):
-            ticker = { 'symbol':'eth_usd', 'contract_type':'quarter', 'type':'1hour', 'ma_day_num':(i + 1) * 1 }
+            ticker = { 'symbol':'eth_usd', 'contract':'quarter', 'type':'1hour', 'ma_day_num':(i + 1) * 1 }
             self.ticker_infos.append(ticker)
+        self.ticker_infos_list.append(self.ticker_infos)
+        self.ticker_infos = []
         for i in range(self.ma_day_num_group_count):
-            ticker = { 'symbol':'eth_usd', 'contract_type':'quarter', 'type':'30min', 'ma_day_num':(i + 1) * 2 }
+            ticker = { 'symbol':'eth_usd', 'contract':'quarter', 'type':'30min', 'ma_day_num':(i + 1) * 2 }
             self.ticker_infos.append(ticker)
+        self.ticker_infos_list.append(self.ticker_infos)
+        self.ticker_infos = []
         for i in range(self.ma_day_num_group_count):
-            ticker = { 'symbol':'eth_usd', 'contract_type':'quarter', 'type':'15min', 'ma_day_num':(i + 1) * 4 }
+            ticker = { 'symbol':'eth_usd', 'contract':'quarter', 'type':'15min', 'ma_day_num':(i + 1) * 4 }
             self.ticker_infos.append(ticker)
+        self.ticker_infos_list.append(self.ticker_infos)
         # etc
+        self.ticker_infos = []
         for i in range(self.ma_day_num_group_count):
-            ticker = { 'symbol':'etc_usd', 'contract_type':'quarter', 'type':'1hour', 'ma_day_num':(i + 1) * 1 }
+            ticker = { 'symbol':'etc_usd', 'contract':'quarter', 'type':'1hour', 'ma_day_num':(i + 1) * 1 }
             self.ticker_infos.append(ticker)
+        self.ticker_infos_list.append(self.ticker_infos)
+        self.ticker_infos = []
         for i in range(self.ma_day_num_group_count):
-            ticker = { 'symbol':'etc_usd', 'contract_type':'quarter', 'type':'30min', 'ma_day_num':(i + 1) * 2 }
+            ticker = { 'symbol':'etc_usd', 'contract':'quarter', 'type':'30min', 'ma_day_num':(i + 1) * 2 }
             self.ticker_infos.append(ticker)
+        self.ticker_infos_list.append(self.ticker_infos)
+        self.ticker_infos = []
         for i in range(self.ma_day_num_group_count):
-            ticker = { 'symbol':'etc_usd', 'contract_type':'quarter', 'type':'15min', 'ma_day_num':(i + 1) * 4 }
+            ticker = { 'symbol':'etc_usd', 'contract':'quarter', 'type':'15min', 'ma_day_num':(i + 1) * 4 }
             self.ticker_infos.append(ticker)
+        self.ticker_infos_list.append(self.ticker_infos)
         # eos
+        self.ticker_infos = []
         for i in range(self.ma_day_num_group_count):
-            ticker = { 'symbol':'eos_usd', 'contract_type':'quarter', 'type':'1hour', 'ma_day_num':(i + 1) * 1 }
+            ticker = { 'symbol':'eos_usd', 'contract':'quarter', 'type':'1hour', 'ma_day_num':(i + 1) * 1 }
             self.ticker_infos.append(ticker)
+        self.ticker_infos_list.append(self.ticker_infos)
+        self.ticker_infos = []
         for i in range(self.ma_day_num_group_count):
-            ticker = { 'symbol':'eos_usd', 'contract_type':'quarter', 'type':'30min', 'ma_day_num':(i + 1) * 2 }
+            ticker = { 'symbol':'eos_usd', 'contract':'quarter', 'type':'30min', 'ma_day_num':(i + 1) * 2 }
             self.ticker_infos.append(ticker)
+        self.ticker_infos_list.append(self.ticker_infos)
+        self.ticker_infos = []
         for i in range(self.ma_day_num_group_count):
-            ticker = { 'symbol':'eos_usd', 'contract_type':'quarter', 'type':'15min', 'ma_day_num':(i + 1) * 4 }
+            ticker = { 'symbol':'eos_usd', 'contract':'quarter', 'type':'15min', 'ma_day_num':(i + 1) * 4 }
             self.ticker_infos.append(ticker)
+        self.ticker_infos_list.append(self.ticker_infos)
 
         pass
 
 
+
+    def trade_orders(self, order_list, diff_order_count, close_price):
+        profit_sum = 0.0
+        if diff_order_count == 0:
+            return profit_sum
+        
+        if diff_order_count > 0:
+            # Long_Order
+            # empty list
+            if len(order_list) == 0:
+                # only open_order
+                order_count = abs(diff_order_count)
+                for i in range(order_count):
+                    order_list.append(close_price)
+                return profit_sum
+            # len(order_list) > 0
+            if order_list[-1] > 0:
+                # only open_order
+                order_count = abs(diff_order_count)
+                for i in range(order_count):
+                    order_list.append(close_price)
+            elif order_list[-1] < 0:
+                order_count = abs(diff_order_count)
+                if order_count <= len(order_list):
+                    # only close_order
+                    for i in range(order_count):
+                        open_price = order_list.pop()
+                        profit_sum += abs(open_price) - abs(close_price)
+                elif order_count > len(order_list):
+                    # close_order + open_order
+                    for i in range(len(order_list)):
+                        open_price = order_list.pop()
+                        profit_sum += abs(open_price) - abs(close_price)
+                    order_count -= len(order_list)
+                    for i in range(order_count):
+                        order_list.append(close_price)
+            return profit_sum
+
+        if diff_order_count < 0:
+            # Short_Order
+            # empty list
+            if len(order_list) == 0:
+                # only open_order
+                order_count = abs(diff_order_count)
+                for i in range(order_count):
+                    order_list.append(-close_price)
+                return profit_sum
+            # len(order_list) > 0
+            if order_list[-1] < 0:
+                # only open_order
+                order_count = abs(diff_order_count)
+                for i in range(order_count):
+                    order_list.append(-close_price)
+            elif order_list[-1] > 0:
+                order_count = abs(diff_order_count)
+                if order_count <= len(order_list):
+                    # only close_order
+                    for i in range(order_count):
+                        open_price = order_list.pop()
+                        profit_sum += abs(close_price) - abs(open_price)
+                elif order_count > len(order_list):
+                    # close_order + open_order
+                    for i in range(len(order_list)):
+                        open_price = order_list.pop()
+                        profit_sum += abs(close_price) - abs(open_price)
+                    order_count -= len(order_list)
+                    for i in range(order_count):
+                        order_list.append(-close_price)                
+            return profit_sum
+        pass
+    
+
     def trade_buy_for_one_contract(self):
         future_api_client = FutureAPIClient(Future_REST_URL, Future_Api_Key, Future_Secret_Key)
         while True:
-            for i in range(len(self.ticker_infos)):
-                if (i % self.ma_day_num_group_count) == 0:
-                    print ('\n')
-                symbol = self.ticker_infos[i]['symbol']
-                contract_type = self.ticker_infos[i]['contract_type']
-                type = self.ticker_infos[i]['type']
+            for k in range(len(self.ticker_infos_list)):
+                print('\n')
+                time.sleep(1)
+                self.ticker_infos = self.ticker_infos_list[k]
+                symbol = self.ticker_infos[0]['symbol']
+                contract_type = self.ticker_infos[0]['contract']
+                type = self.ticker_infos[0]['type']
                 klinelist = future_api_client.get_kline(symbol, contract_type, type)
                 if len(klinelist.klinelist) < 10:
                     print(str(self.ticker_infos[i]) + '\tFuture_API_Client_ERROR!')
                     continue
                 tech_indicat = FutureTechnicalIndicator(klinelist)
-                ma_day_num = self.ticker_infos[i]['ma_day_num']
-                obv_simple = OBV_Simple(tech_indicat.vol_list, tech_indicat.close_list, ma_day_num)
-                buy_count = 0
-                buy_price_sum = 0.0
-                last_buy_price = 0.0
-                sell_count = 0
-                sell_price_sum = 0.0
-                last_sell_price = 0.0
-                profit_sum = 0.0
-                for j in range(len(tech_indicat.close_list)):
-                    s = ''
-                    s += '[%d]' % j
-                    s += '\t\t%.2f' % obv_simple.close_list[j]
-                    s += '\t\t%d' % (obv_simple.vol_list[j] / 10000)
-                    s += '\t\t%d' % (obv_simple.obv_list[j] / 10000)
-                    s += '\t\t%d' % (obv_simple.ma_obv_list[j] / 10000)
-                    if obv_simple.ma_obv_list[j] > obv_simple.ma_obv_list[j-1]:
-                        s += '\t\t     +++++'
-                        if j - 2 >= 0 and obv_simple.ma_obv_list[j-1] < obv_simple.ma_obv_list[j-2]:
-                            s += '\t\tBuy'
-                            last_buy_price = obv_simple.close_list[j]
-                            if last_sell_price > 0:
-                                sell_count += 1
-                                sell_price_sum += last_sell_price
-                                buy_count += 1
-                                buy_price_sum += obv_simple.close_list[j]
-                                s += '\t\t%+.2f' % (last_sell_price - last_buy_price)
-                                s += ' =%.2f-%.2f' % (last_sell_price, last_buy_price)
-                                profit_sum += last_sell_price - last_buy_price
-                                s += '\t\tsum= %+.2f' % profit_sum
-                                #print(s)
-                    else:
-                        s += '\t\t-----     '
-                        if j - 2 >= 0 and obv_simple.ma_obv_list[j-1] > obv_simple.ma_obv_list[j-2]:
-                            s += '\t\tSell'
-                            last_sell_price = obv_simple.close_list[j]
-                            if last_buy_price > 0:
-                                buy_count += 1
-                                buy_price_sum += last_buy_price
-                                sell_count += 1
-                                sell_price_sum += obv_simple.close_list[j]
-                                s += '\t\t%+.2f' % (last_sell_price - last_buy_price)
-                                s += ' =%.2f-%.2f' % (last_sell_price, last_buy_price)
-                                profit_sum += last_sell_price - last_buy_price
-                                s += '\t\tsum= %+.2f' % profit_sum
-                                #print(s)
-                        
-                    #print(s)
-                s = ''
-                s += str(self.ticker_infos[i])
-                s += '\tProfit_Sum=\t%+6.2f' % profit_sum
-                s += '\tProfit_Per=\t%+.2f' % (profit_sum / (buy_price_sum / buy_count) * 100)
-                s += '%'
-                s += '\tBUY_Trade = %3d * %6.2f' % (buy_count, buy_price_sum / buy_count)
-                s += '\tSELL_Trade = %3d * %6.2f' % (sell_count, sell_price_sum / sell_count)
-                                
-                print(s)
 
-                time.sleep(0.5)
+                obv_simple_list = []
+                for i in range(len(self.ticker_infos)):
+                    ma_day_num = self.ticker_infos[i]['ma_day_num']
+                    obv_simple = OBV_Simple(tech_indicat.vol_list, tech_indicat.close_list, ma_day_num)
+                    obv_simple_list.append(obv_simple)
+
+                order_count_list = []
+                for j in range(len(tech_indicat.close_list)):
+                    order_count_list.append(0)
+                    if j == 0:
+                        continue
+                    for i in range(len(obv_simple_list)):
+                        if obv_simple_list[i].ma_obv_list[j] > obv_simple_list[i].ma_obv_list[j-1]:
+                            order_count_list[j] += 1
+                        else:
+                            order_count_list[j] -= 1
+
+                profit_sum = 0.0
+                order_list = []
+                for j in range(len(tech_indicat.close_list)):
+                    for i in range(len(obv_simple_list)):
+                        s = ''
+                        s += str(self.ticker_infos[i])
+                        s += '\tclose[%d]' % j
+                        s += '\tma_day[%d]' % self.ticker_infos[i]['ma_day_num']
+                        s += '\t%.2f' % obv_simple_list[i].close_list[j]
+                        s += '\t%d' % (obv_simple_list[i].vol_list[j] / 10000)
+                        s += '\t%d' % (obv_simple_list[i].obv_list[j] / 10000)
+                        s += '\t%d' % (obv_simple_list[i].ma_obv_list[j] / 10000)
+                        s += '\t%+2d' % order_count_list[j]                        
+                        if i < len(obv_simple_list) - 1:
+                            continue
+                        else:
+                            diff_order_count = 0
+                            if j == 0:
+                                diff_order_count = order_count_list[j]
+                            else:
+                                diff_order_count = order_count_list[j] - order_count_list[j-1]
+                            t_profit_sum = self.trade_orders(order_list, diff_order_count, obv_simple_list[i].close_list[j])
+                            profit_sum += t_profit_sum                            
+                            s += '\tprofit_sum=\t%+6.2f' % profit_sum
+                            s += '\ttmp_profit=\t%+6.2f' % t_profit_sum
+                        print(s)
+                    #print()
+
+                print('----------------------------Game Over----------------------------')
             break
         
         pass
