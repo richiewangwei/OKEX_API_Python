@@ -183,6 +183,25 @@ class FutureTradeSystem:
                         order_list.append(-close_price)                
             return profit_sum
         pass
+
+
+    def profit_opened_orders(self, order_list, close_price):
+        profit_sum = 0.0
+        if len(order_list) == 0:
+            return profit_sum
+        if order_list[-1] > 0:
+            # Long_Order
+            for i in range(len(order_list)):
+                open_price = order_list[i]
+                profit_sum += abs(close_price) - abs(open_price)
+            return profit_sum
+        elif order_list[-1] < 0:
+            # Short_Order
+            for i in range(len(order_list)):
+                open_price = order_list[i]
+                profit_sum += abs(open_price) - abs(close_price)
+            return profit_sum
+        pass
     
 
     def trade_buy_for_one_contract(self):
@@ -197,7 +216,7 @@ class FutureTradeSystem:
                 type = self.ticker_infos[0]['type']
                 klinelist = future_api_client.get_kline(symbol, contract_type, type)
                 if len(klinelist.klinelist) < 10:
-                    print(str(self.ticker_infos[i]) + '\tFuture_API_Client_ERROR!')
+                    print(str(self.ticker_infos[0]) + '\tFuture_API_Client_ERROR!')
                     continue
                 tech_indicat = FutureTechnicalIndicator(klinelist)
 
@@ -224,8 +243,8 @@ class FutureTradeSystem:
                     for i in range(len(obv_simple_list)):
                         s = ''
                         s += str(self.ticker_infos[i])
-                        s += '\tclose[%d]' % j
-                        s += '\tma_day[%d]' % self.ticker_infos[i]['ma_day_num']
+                        s += ' close[%d]' % j
+                        s += ' ma_day[%d]' % self.ticker_infos[i]['ma_day_num']
                         s += '\t%.2f' % obv_simple_list[i].close_list[j]
                         s += '\t%d' % (obv_simple_list[i].vol_list[j] / 10000)
                         s += '\t%d' % (obv_simple_list[i].obv_list[j] / 10000)
@@ -242,7 +261,9 @@ class FutureTradeSystem:
                             t_profit_sum = self.trade_orders(order_list, diff_order_count, obv_simple_list[i].close_list[j])
                             profit_sum += t_profit_sum                            
                             s += '\tprofit_sum=\t%+6.2f' % profit_sum
-                            s += '\ttmp_profit=\t%+6.2f' % t_profit_sum
+                            s += '\ttmp_prof=\t%+6.2f' % t_profit_sum
+                            opened_profit = self.profit_opened_orders(order_list, obv_simple_list[i].close_list[j])
+                            s += '\topen_prof=\t%+6.2f' % opened_profit
                         print(s)
                     #print()
 
