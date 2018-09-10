@@ -169,12 +169,13 @@ class FutureTradeSystem:
                             else:
                                 diff_order_count = order_count_list[j] - order_count_list[j-1]
                             stat_orders = Stat_Orders()
-                            t_profit_sum = stat_orders.trade_orders(order_list, diff_order_count, obv_simple_list[i].close_list[j])
-                            profit_sum += t_profit_sum                            
-                            s += '\tprofit_sum=\t%+6.2f' % profit_sum
-                            s += '\ttmp_prof=\t%+6.2f' % t_profit_sum
+                            closed_profit = stat_orders.trade_orders(order_list, diff_order_count, obv_simple_list[i].close_list[j])
                             opened_profit = stat_orders.profit_opened_orders(order_list, obv_simple_list[i].close_list[j])
-                            s += '\topen_prof=\t%+6.2f' % opened_profit
+                            profit_sum += closed_profit                            
+                            s += '\tprofit_sum=\t%+6.2f' % (profit_sum + opened_profit)
+                            s += '\tclo_prof_all=\t%+6.2f' % profit_sum
+                            s += '\tclo_prof_one=\t%+6.2f' % closed_profit
+                            s += '\topn_prof_one=\t%+6.2f' % opened_profit
                         print(s)
                     #print()
 
