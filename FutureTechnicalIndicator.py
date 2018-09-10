@@ -83,6 +83,102 @@ class OBV_Simple:
     
               
 
+class Stat_Orders:
+    def __init__(self):
+        pass
+
+
+    def trade_orders(self, order_list, diff_order_count, close_price):
+        profit_sum = 0.0
+        if diff_order_count == 0:
+            return profit_sum
+        
+        if diff_order_count > 0:
+            # Long_Order
+            # empty list
+            if len(order_list) == 0:
+                # only open_order
+                order_count = abs(diff_order_count)
+                for i in range(order_count):
+                    order_list.append(close_price)
+                return profit_sum
+            # len(order_list) > 0
+            if order_list[-1] > 0:
+                # only open_order
+                order_count = abs(diff_order_count)
+                for i in range(order_count):
+                    order_list.append(close_price)
+            elif order_list[-1] < 0:
+                order_count = abs(diff_order_count)
+                if order_count <= len(order_list):
+                    # only close_order
+                    for i in range(order_count):
+                        open_price = order_list.pop()
+                        profit_sum += abs(open_price) - abs(close_price)
+                elif order_count > len(order_list):
+                    # close_order + open_order
+                    for i in range(len(order_list)):
+                        open_price = order_list.pop()
+                        profit_sum += abs(open_price) - abs(close_price)
+                    order_count -= len(order_list)
+                    for i in range(order_count):
+                        order_list.append(close_price)
+            return profit_sum
+
+        if diff_order_count < 0:
+            # Short_Order
+            # empty list
+            if len(order_list) == 0:
+                # only open_order
+                order_count = abs(diff_order_count)
+                for i in range(order_count):
+                    order_list.append(-close_price)
+                return profit_sum
+            # len(order_list) > 0
+            if order_list[-1] < 0:
+                # only open_order
+                order_count = abs(diff_order_count)
+                for i in range(order_count):
+                    order_list.append(-close_price)
+            elif order_list[-1] > 0:
+                order_count = abs(diff_order_count)
+                if order_count <= len(order_list):
+                    # only close_order
+                    for i in range(order_count):
+                        open_price = order_list.pop()
+                        profit_sum += abs(close_price) - abs(open_price)
+                elif order_count > len(order_list):
+                    # close_order + open_order
+                    for i in range(len(order_list)):
+                        open_price = order_list.pop()
+                        profit_sum += abs(close_price) - abs(open_price)
+                    order_count -= len(order_list)
+                    for i in range(order_count):
+                        order_list.append(-close_price)                
+            return profit_sum
+        pass
+
+
+    def profit_opened_orders(self, order_list, close_price):
+        profit_sum = 0.0
+        if len(order_list) == 0:
+            return profit_sum
+        if order_list[-1] > 0:
+            # Long_Order
+            for i in range(len(order_list)):
+                open_price = order_list[i]
+                profit_sum += abs(close_price) - abs(open_price)
+            return profit_sum
+        elif order_list[-1] < 0:
+            # Short_Order
+            for i in range(len(order_list)):
+                open_price = order_list[i]
+                profit_sum += abs(open_price) - abs(close_price)
+            return profit_sum
+        pass   
+
+
+
 class Open_Close_Diff:
     def __init__(self, open_list, close_list):
         self.open_list = open_list

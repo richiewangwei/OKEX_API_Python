@@ -114,96 +114,6 @@ class FutureTradeSystem:
 
 
 
-    def trade_orders(self, order_list, diff_order_count, close_price):
-        profit_sum = 0.0
-        if diff_order_count == 0:
-            return profit_sum
-        
-        if diff_order_count > 0:
-            # Long_Order
-            # empty list
-            if len(order_list) == 0:
-                # only open_order
-                order_count = abs(diff_order_count)
-                for i in range(order_count):
-                    order_list.append(close_price)
-                return profit_sum
-            # len(order_list) > 0
-            if order_list[-1] > 0:
-                # only open_order
-                order_count = abs(diff_order_count)
-                for i in range(order_count):
-                    order_list.append(close_price)
-            elif order_list[-1] < 0:
-                order_count = abs(diff_order_count)
-                if order_count <= len(order_list):
-                    # only close_order
-                    for i in range(order_count):
-                        open_price = order_list.pop()
-                        profit_sum += abs(open_price) - abs(close_price)
-                elif order_count > len(order_list):
-                    # close_order + open_order
-                    for i in range(len(order_list)):
-                        open_price = order_list.pop()
-                        profit_sum += abs(open_price) - abs(close_price)
-                    order_count -= len(order_list)
-                    for i in range(order_count):
-                        order_list.append(close_price)
-            return profit_sum
-
-        if diff_order_count < 0:
-            # Short_Order
-            # empty list
-            if len(order_list) == 0:
-                # only open_order
-                order_count = abs(diff_order_count)
-                for i in range(order_count):
-                    order_list.append(-close_price)
-                return profit_sum
-            # len(order_list) > 0
-            if order_list[-1] < 0:
-                # only open_order
-                order_count = abs(diff_order_count)
-                for i in range(order_count):
-                    order_list.append(-close_price)
-            elif order_list[-1] > 0:
-                order_count = abs(diff_order_count)
-                if order_count <= len(order_list):
-                    # only close_order
-                    for i in range(order_count):
-                        open_price = order_list.pop()
-                        profit_sum += abs(close_price) - abs(open_price)
-                elif order_count > len(order_list):
-                    # close_order + open_order
-                    for i in range(len(order_list)):
-                        open_price = order_list.pop()
-                        profit_sum += abs(close_price) - abs(open_price)
-                    order_count -= len(order_list)
-                    for i in range(order_count):
-                        order_list.append(-close_price)                
-            return profit_sum
-        pass
-
-
-    def profit_opened_orders(self, order_list, close_price):
-        profit_sum = 0.0
-        if len(order_list) == 0:
-            return profit_sum
-        if order_list[-1] > 0:
-            # Long_Order
-            for i in range(len(order_list)):
-                open_price = order_list[i]
-                profit_sum += abs(close_price) - abs(open_price)
-            return profit_sum
-        elif order_list[-1] < 0:
-            # Short_Order
-            for i in range(len(order_list)):
-                open_price = order_list[i]
-                profit_sum += abs(open_price) - abs(close_price)
-            return profit_sum
-        pass
-    
-
     def trade_buy_for_one_contract(self):
         future_api_client = FutureAPIClient(Future_REST_URL, Future_Api_Key, Future_Secret_Key)
         while True:
@@ -258,11 +168,12 @@ class FutureTradeSystem:
                                 diff_order_count = order_count_list[j]
                             else:
                                 diff_order_count = order_count_list[j] - order_count_list[j-1]
-                            t_profit_sum = self.trade_orders(order_list, diff_order_count, obv_simple_list[i].close_list[j])
+                            stat_orders = Stat_Orders()
+                            t_profit_sum = stat_orders.trade_orders(order_list, diff_order_count, obv_simple_list[i].close_list[j])
                             profit_sum += t_profit_sum                            
                             s += '\tprofit_sum=\t%+6.2f' % profit_sum
                             s += '\ttmp_prof=\t%+6.2f' % t_profit_sum
-                            opened_profit = self.profit_opened_orders(order_list, obv_simple_list[i].close_list[j])
+                            opened_profit = stat_orders.profit_opened_orders(order_list, obv_simple_list[i].close_list[j])
                             s += '\topen_prof=\t%+6.2f' % opened_profit
                         print(s)
                     #print()
