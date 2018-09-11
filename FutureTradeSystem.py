@@ -126,7 +126,7 @@ class FutureTradeSystem:
                 type = self.ticker_infos[0]['type']
                 klinelist = future_api_client.get_kline(symbol, contract_type, type)
                 if len(klinelist.klinelist) < 10:
-                    print(str(self.ticker_infos[0]) + '\tFuture_API_Client_ERROR!')
+                    print(str(self.ticker_infos[0]) + '\tFuture_API_Client_ERROR!\n\n')
                     continue
                 tech_indicat = FutureTechnicalIndicator(klinelist)
 
@@ -151,18 +151,18 @@ class FutureTradeSystem:
                 order_list = []
                 for j in range(len(tech_indicat.close_list)):
                     for i in range(len(obv_simple_list)):
-                        s = ''
-                        s += str(self.ticker_infos[i])
-                        s += ' close[%d]' % j
-                        s += ' ma_day[%d]' % self.ticker_infos[i]['ma_day_num']
-                        s += '\t%.2f' % obv_simple_list[i].close_list[j]
-                        s += '\t%d' % (obv_simple_list[i].vol_list[j] / 10000)
-                        s += '\t%d' % (obv_simple_list[i].obv_list[j] / 10000)
-                        s += '\t%d' % (obv_simple_list[i].ma_obv_list[j] / 10000)
-                        s += '\t%+2d' % order_count_list[j]                        
                         if i < len(obv_simple_list) - 1:
                             continue
                         else:
+                            s = ''
+                            s += str(self.ticker_infos[i])
+                            s += ' close[%d]' % j
+                            s += ' ma_day[%d]' % self.ticker_infos[i]['ma_day_num']
+                            s += ' %.2f' % obv_simple_list[i].close_list[j]
+                            s += ' %d' % (obv_simple_list[i].vol_list[j] / 10000)
+                            s += ' %d' % (obv_simple_list[i].obv_list[j] / 10000)
+                            s += ' %d' % (obv_simple_list[i].ma_obv_list[j] / 10000)
+                            s += ' %+2d' % order_count_list[j]                        
                             diff_order_count = 0
                             if j == 0:
                                 diff_order_count = order_count_list[j]
@@ -176,10 +176,11 @@ class FutureTradeSystem:
                             s += '\tclo_prof_all=\t%+6.2f' % profit_sum
                             s += '\tclo_prof_one=\t%+6.2f' % closed_profit
                             s += '\topn_prof_one=\t%+6.2f' % opened_profit
-                        print(s)
+                            if j % 24 == 0 or j == len(tech_indicat.close_list) - 1:
+                                print(s)
                     #print()
 
-                print('----------------------------Game Over----------------------------')
+                print('----------------------------Game Over----------------------------\n\n')
             break
         
         pass
@@ -188,6 +189,7 @@ class FutureTradeSystem:
 
 
 if __name__ == '__main__':
+    print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
     future_trade_system = FutureTradeSystem()
     future_trade_system.trade_buy_for_one_contract()
 
