@@ -110,17 +110,18 @@ class Stat_Orders:
                     order_list.append(close_price)
             elif order_list[-1] < 0:
                 order_count = abs(diff_order_count)
-                if order_count <= len(order_list):
+                len_order_list = len(order_list)
+                if order_count <= len_order_list:
                     # only close_order
                     for i in range(order_count):
                         open_price = order_list.pop()
                         profit_sum += abs(open_price) - abs(close_price)
-                elif order_count > len(order_list):
+                elif order_count > len_order_list:
                     # close_order + open_order
-                    for i in range(len(order_list)):
+                    for i in range(len_order_list):
                         open_price = order_list.pop()
                         profit_sum += abs(open_price) - abs(close_price)
-                    order_count -= len(order_list)
+                    order_count -= len_order_list
                     for i in range(order_count):
                         order_list.append(close_price)
             return profit_sum
@@ -142,17 +143,18 @@ class Stat_Orders:
                     order_list.append(-close_price)
             elif order_list[-1] > 0:
                 order_count = abs(diff_order_count)
-                if order_count <= len(order_list):
+                len_order_list = len(order_list)
+                if order_count <= len_order_list:
                     # only close_order
                     for i in range(order_count):
                         open_price = order_list.pop()
                         profit_sum += abs(close_price) - abs(open_price)
-                elif order_count > len(order_list):
+                elif order_count > len_order_list:
                     # close_order + open_order
-                    for i in range(len(order_list)):
+                    for i in range(len_order_list):
                         open_price = order_list.pop()
                         profit_sum += abs(close_price) - abs(open_price)
-                    order_count -= len(order_list)
+                    order_count -= len_order_list
                     for i in range(order_count):
                         order_list.append(-close_price)                
             return profit_sum
