@@ -16,97 +16,97 @@ class FutureTradeSystem:
         # btc
         self.ticker_infos = []
         for i in range(self.ma_day_num_group_count):
-            ticker = { 'symbol':'btc_usd', 'contract':'quarter', 'type':'1hour', 'ma_day_num':(i + 1) * 1 }
+            ticker = { 'symbol':'btc_usd', 'contract':'quarter', 'type':'1hour', 'ma_day_num':(i + 10) * 1 }
             self.ticker_infos.append(ticker)
         self.ticker_infos_list.append(self.ticker_infos)
         self.ticker_infos = []
         for i in range(self.ma_day_num_group_count):
-            ticker = { 'symbol':'btc_usd', 'contract':'quarter', 'type':'30min', 'ma_day_num':(i + 1) * 2 }
+            ticker = { 'symbol':'btc_usd', 'contract':'quarter', 'type':'30min', 'ma_day_num':(i + 10) * 2 }
             self.ticker_infos.append(ticker)
         self.ticker_infos_list.append(self.ticker_infos)
         self.ticker_infos = []
         for i in range(self.ma_day_num_group_count):
-            ticker = { 'symbol':'btc_usd', 'contract':'quarter', 'type':'15min', 'ma_day_num':(i + 1) * 4 }
+            ticker = { 'symbol':'btc_usd', 'contract':'quarter', 'type':'15min', 'ma_day_num':(i + 10) * 4 }
             self.ticker_infos.append(ticker)
         self.ticker_infos_list.append(self.ticker_infos)
         # ltc
         self.ticker_infos = []
         for i in range(self.ma_day_num_group_count):
-            ticker = { 'symbol':'ltc_usd', 'contract':'quarter', 'type':'1hour', 'ma_day_num':(i + 1) * 1 }
+            ticker = { 'symbol':'ltc_usd', 'contract':'quarter', 'type':'1hour', 'ma_day_num':(i + 10) * 1 }
             self.ticker_infos.append(ticker)
         self.ticker_infos_list.append(self.ticker_infos)
         self.ticker_infos = []
         for i in range(self.ma_day_num_group_count):
-            ticker = { 'symbol':'ltc_usd', 'contract':'quarter', 'type':'30min', 'ma_day_num':(i + 1) * 2 }
+            ticker = { 'symbol':'ltc_usd', 'contract':'quarter', 'type':'30min', 'ma_day_num':(i + 10) * 2 }
             self.ticker_infos.append(ticker)
         self.ticker_infos_list.append(self.ticker_infos)
         self.ticker_infos = []
         for i in range(self.ma_day_num_group_count):
-            ticker = { 'symbol':'ltc_usd', 'contract':'quarter', 'type':'15min', 'ma_day_num':(i + 1) * 4 }
+            ticker = { 'symbol':'ltc_usd', 'contract':'quarter', 'type':'15min', 'ma_day_num':(i + 10) * 4 }
             self.ticker_infos.append(ticker)
         self.ticker_infos_list.append(self.ticker_infos)
         # bch
         self.ticker_infos = []
         for i in range(self.ma_day_num_group_count):
-            ticker = { 'symbol':'bch_usd', 'contract':'quarter', 'type':'1hour', 'ma_day_num':(i + 1) * 1 }
+            ticker = { 'symbol':'bch_usd', 'contract':'quarter', 'type':'1hour', 'ma_day_num':(i + 10) * 1 }
             self.ticker_infos.append(ticker)
         self.ticker_infos_list.append(self.ticker_infos)
         self.ticker_infos = []
         for i in range(self.ma_day_num_group_count):
-            ticker = { 'symbol':'bch_usd', 'contract':'quarter', 'type':'30min', 'ma_day_num':(i + 1) * 2 }
+            ticker = { 'symbol':'bch_usd', 'contract':'quarter', 'type':'30min', 'ma_day_num':(i + 10) * 2 }
             self.ticker_infos.append(ticker)
         self.ticker_infos_list.append(self.ticker_infos)
         self.ticker_infos = []
         for i in range(self.ma_day_num_group_count):
-            ticker = { 'symbol':'bch_usd', 'contract':'quarter', 'type':'15min', 'ma_day_num':(i + 1) * 4 }
+            ticker = { 'symbol':'bch_usd', 'contract':'quarter', 'type':'15min', 'ma_day_num':(i + 10) * 4 }
             self.ticker_infos.append(ticker)
         self.ticker_infos_list.append(self.ticker_infos)
         # eth
         self.ticker_infos = []
         for i in range(self.ma_day_num_group_count):
-            ticker = { 'symbol':'eth_usd', 'contract':'quarter', 'type':'1hour', 'ma_day_num':(i + 1) * 1 }
+            ticker = { 'symbol':'eth_usd', 'contract':'quarter', 'type':'1hour', 'ma_day_num':(i + 10) * 1 }
             self.ticker_infos.append(ticker)
         self.ticker_infos_list.append(self.ticker_infos)
         self.ticker_infos = []
         for i in range(self.ma_day_num_group_count):
-            ticker = { 'symbol':'eth_usd', 'contract':'quarter', 'type':'30min', 'ma_day_num':(i + 1) * 2 }
+            ticker = { 'symbol':'eth_usd', 'contract':'quarter', 'type':'30min', 'ma_day_num':(i + 10) * 2 }
             self.ticker_infos.append(ticker)
         self.ticker_infos_list.append(self.ticker_infos)
         self.ticker_infos = []
         for i in range(self.ma_day_num_group_count):
-            ticker = { 'symbol':'eth_usd', 'contract':'quarter', 'type':'15min', 'ma_day_num':(i + 1) * 4 }
+            ticker = { 'symbol':'eth_usd', 'contract':'quarter', 'type':'15min', 'ma_day_num':(i + 10) * 4 }
             self.ticker_infos.append(ticker)
         self.ticker_infos_list.append(self.ticker_infos)
         # etc
         self.ticker_infos = []
         for i in range(self.ma_day_num_group_count):
-            ticker = { 'symbol':'etc_usd', 'contract':'quarter', 'type':'1hour', 'ma_day_num':(i + 1) * 1 }
+            ticker = { 'symbol':'etc_usd', 'contract':'quarter', 'type':'1hour', 'ma_day_num':(i + 10) * 1 }
             self.ticker_infos.append(ticker)
         self.ticker_infos_list.append(self.ticker_infos)
         self.ticker_infos = []
         for i in range(self.ma_day_num_group_count):
-            ticker = { 'symbol':'etc_usd', 'contract':'quarter', 'type':'30min', 'ma_day_num':(i + 1) * 2 }
+            ticker = { 'symbol':'etc_usd', 'contract':'quarter', 'type':'30min', 'ma_day_num':(i + 10) * 2 }
             self.ticker_infos.append(ticker)
         self.ticker_infos_list.append(self.ticker_infos)
         self.ticker_infos = []
         for i in range(self.ma_day_num_group_count):
-            ticker = { 'symbol':'etc_usd', 'contract':'quarter', 'type':'15min', 'ma_day_num':(i + 1) * 4 }
+            ticker = { 'symbol':'etc_usd', 'contract':'quarter', 'type':'15min', 'ma_day_num':(i + 10) * 4 }
             self.ticker_infos.append(ticker)
         self.ticker_infos_list.append(self.ticker_infos)
         # eos
         self.ticker_infos = []
         for i in range(self.ma_day_num_group_count):
-            ticker = { 'symbol':'eos_usd', 'contract':'quarter', 'type':'1hour', 'ma_day_num':(i + 1) * 1 }
+            ticker = { 'symbol':'eos_usd', 'contract':'quarter', 'type':'1hour', 'ma_day_num':(i + 10) * 1 }
             self.ticker_infos.append(ticker)
         self.ticker_infos_list.append(self.ticker_infos)
         self.ticker_infos = []
         for i in range(self.ma_day_num_group_count):
-            ticker = { 'symbol':'eos_usd', 'contract':'quarter', 'type':'30min', 'ma_day_num':(i + 1) * 2 }
+            ticker = { 'symbol':'eos_usd', 'contract':'quarter', 'type':'30min', 'ma_day_num':(i + 10) * 2 }
             self.ticker_infos.append(ticker)
         self.ticker_infos_list.append(self.ticker_infos)
         self.ticker_infos = []
         for i in range(self.ma_day_num_group_count):
-            ticker = { 'symbol':'eos_usd', 'contract':'quarter', 'type':'15min', 'ma_day_num':(i + 1) * 4 }
+            ticker = { 'symbol':'eos_usd', 'contract':'quarter', 'type':'15min', 'ma_day_num':(i + 10) * 4 }
             self.ticker_infos.append(ticker)
         self.ticker_infos_list.append(self.ticker_infos)
 
@@ -141,6 +141,8 @@ class FutureTradeSystem:
                     order_count_list.append(0)
                     if j == 0:
                         continue
+                    if j < len(tech_indicat.close_list) * 10 / 100:
+                        continue
                     for i in range(len(obv_simple_list)):
                         if obv_simple_list[i].ma_obv_list[j] > obv_simple_list[i].ma_obv_list[j-1]:
                             order_count_list[j] += 1
@@ -156,7 +158,7 @@ class FutureTradeSystem:
                         else:
                             s = ''
                             s += str(self.ticker_infos[i])
-                            s += ' close[%d]' % j
+                            s += '\tclose[%d]' % j
                             s += ' ma_day[%d]' % self.ticker_infos[i]['ma_day_num']
                             s += ' %.2f' % obv_simple_list[i].close_list[j]
                             s += ' %d' % (obv_simple_list[i].vol_list[j] / 10000)
@@ -178,10 +180,11 @@ class FutureTradeSystem:
                             s += '\tclo_prof_all=\t%+6.2f' % profit_sum
                             s += '\topn_prof_one=\t%+6.2f' % opened_profit
                             #s += '\torder_list=%s' % str(order_list)
-                            if j % 24 == 0:
-                                print(s)
-                            if j == len(tech_indicat.close_list) - 1:
-                                print(s)
+                            #if j % 24 == 0:
+                            #    print(s)
+                            #if j == len(tech_indicat.close_list) - 1:
+                            #    print(s)
+                            print(s)
                     #print()
 
                 print('----------------------------Game Over----------------------------\n\n')

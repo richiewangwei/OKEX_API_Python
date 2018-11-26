@@ -255,6 +255,30 @@ class TestFutureTechnicalIndicator(unittest.TestCase):
 
 
 
+    def test_Stat_Orders(self):
+        # test trade_orders()
+        if True:
+            order_list = []
+            diff_order_count = 0
+            close_price = 100.0
+            stat_orders = Stat_Orders()
+            closed_profit = stat_orders.trade_orders(order_list, diff_order_count, close_price)
+            self.assertEqual(closed_profit, 0.0)
+            
+
+        # test profit_opened_orders()
+        if True:
+            order_list = []
+            close_price = 100.0
+            stat_orders = Stat_Orders()
+            opened_profit = stat_orders.profit_opened_orders(order_list, close_price)
+            self.assertEqual(opened_profit, 0.0)
+
+
+        pass
+
+
+    
     def test_Open_Close_Diff(self):
         klinelist = KLineList()
         for i in range(10):
